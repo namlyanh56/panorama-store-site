@@ -1,305 +1,178 @@
-<!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Panorama Store — Jasa Layanan Online Berbasis Teknologi</title>
-    <meta name="description" content="Panorama Store: SMM Panel, pembuatan bot otomatis, dan layanan digital untuk meningkatkan aktivitas serta efisiensi bisnis online." />
-    <meta property="og:title" content="Panorama Store" />
-    <meta property="og:description" content="Layanan digital lengkap: SMM Panel, Bot Otomatis, dan pendukung aktivitas digital." />
-    <meta property="og:type" content="website" />
-    <link rel="icon" href="logo.svg" />
-    <!-- Tailwind CSS via CDN (mudah dan cepat) -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              brand: {
-                50: '#eef6ff',
-                100: '#dbeafe',
-                200: '#bfdbfe',
-                300: '#93c5fd',
-                400: '#60a5fa',
-                500: '#3b82f6',
-                600: '#2563eb',
-                700: '#1d4ed8',
-                800: '#1e40af',
-                900: '#1e3a8a',
-              },
-            },
-          },
-        },
-        darkMode: 'class',
-      };
-    </script>
-  </head>
-  <body class="bg-white text-slate-800 dark:bg-slate-950 dark:text-slate-100">
-    <!-- Header -->
-    <header class="sticky top-0 z-30 backdrop-blur bg-white/70 dark:bg-slate-950/60 border-b border-slate-200/60 dark:border-slate-800">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-16">
-          <a href="#" class="flex items-center gap-3">
-            <img src="logo.svg" alt="Panorama Store" class="h-8 w-8" />
-            <span class="font-semibold tracking-wide">PANORAMA STORE</span>
-          </a>
-          <nav class="hidden md:flex items-center gap-6">
-            <a href="#layanan" class="hover:text-brand-600">Layanan</a>
-            <a href="#harga" class="hover:text-brand-600">Harga</a>
-            <a href="#testimoni" class="hover:text-brand-600">Testimoni</a>
-            <a href="#faq" class="hover:text-brand-600">FAQ</a>
-            <a href="#kontak" class="rounded-lg bg-brand-600 px-4 py-2 text-white hover:bg-brand-700">Order</a>
-          </nav>
-          <div class="flex items-center gap-2">
-            <button id="themeToggle" aria-label="Toggle theme" class="p-2 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-900">
-              <span id="themeIcon">🌙</span>
-            </button>
-            <button id="menuBtn" class="md:hidden p-2 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-900" aria-label="Open menu">
-              ☰
-            </button>
-          </div>
-        </div>
-        <div id="mobileMenu" class="hidden md:hidden pb-4">
-          <nav class="flex flex-col gap-3">
-            <a href="#layanan" class="py-2 px-2 rounded hover:bg-slate-100 dark:hover:bg-slate-900">Layanan</a>
-            <a href="#harga" class="py-2 px-2 rounded hover:bg-slate-100 dark:hover:bg-slate-900">Harga</a>
-            <a href="#testimoni" class="py-2 px-2 rounded hover:bg-slate-100 dark:hover:bg-slate-900">Testimoni</a>
-            <a href="#faq" class="py-2 px-2 rounded hover:bg-slate-100 dark:hover:bg-slate-900">FAQ</a>
-            <a href="#kontak" class="py-2 px-2 rounded bg-brand-600 text-white hover:bg-brand-700">Order</a>
-          </nav>
-        </div>
-      </div>
-    </header>
-
-    <!-- Hero -->
-    <section class="relative overflow-hidden">
-      <div class="absolute inset-0 bg-gradient-to-br from-brand-50 via-white to-brand-100 dark:from-slate-900 dark:via-slate-950 dark:to-slate-900"></div>
-      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div class="grid lg:grid-cols-2 gap-10 items-center">
-          <div>
-            <span class="inline-flex items-center gap-2 text-xs font-medium px-3 py-1 rounded-full bg-brand-100 text-brand-700 dark:bg-slate-800 dark:text-brand-300">
-              Bisnis Digital • PT Perorangan
-            </span>
-            <h1 class="mt-4 text-4xl sm:text-5xl font-bold leading-tight">
-              Layanan Digital Lengkap untuk
-              <span class="text-brand-600">Optimasi Bisnis Online</span>
-            </h1>
-            <p class="mt-4 text-lg text-slate-600 dark:text-slate-300">
-              SMM Panel, pembuatan bot otomatis, dan layanan pendukung aktivitas digital—tanpa toko fisik, serba online, dan dikelola satu orang.
-            </p>
-            <div class="mt-6 flex flex-wrap gap-3">
-              <a href="#layanan" class="rounded-lg bg-brand-600 px-5 py-3 text-white hover:bg-brand-700">Lihat Layanan</a>
-              <a href="#kontak" class="rounded-lg border border-slate-300 dark:border-slate-700 px-5 py-3 hover:bg-slate-100 dark:hover:bg-slate-900">Order via Telegram</a>
-            </div>
-            <div class="mt-6 text-sm text-slate-500 dark:text-slate-400">
-              Channel: <a class="text-brand-600 hover:underline" target="_blank" rel="noopener" href="https://t.me/PanoramaaStoree">t.me/PanoramaaStoree</a>
-            </div>
-          </div>
-          <div class="lg:justify-self-end">
-            <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-950/50 p-6 shadow-sm">
-              <h3 class="text-sm uppercase tracking-wider text-slate-500 dark:text-slate-400">Gambaran Umum</h3>
-              <ul class="mt-3 space-y-2 text-sm">
-                <li>• Operasional 100% digital, tanpa toko fisik</li>
-                <li>• Target: individu, pebisnis online, dan pemilik brand</li>
-                <li>• Fokus: efisiensi, peningkatan engagement, otomasi</li>
-                <li>• Dikelola perorangan: operasional, pengembangan, CS</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Layanan -->
-    <section id="layanan" class="py-16">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="mb-8">
-          <h2 class="text-2xl sm:text-3xl font-bold">Layanan Panorama Store</h2>
-          <p class="mt-2 text-slate-600 dark:text-slate-300">Pilih layanan yang kamu butuhkan. Harga detail bisa ditanyakan melalui Telegram.</p>
-        </div>
-
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <!-- Item -->
-          <div class="rounded-xl border border-slate-200 dark:border-slate-800 p-5 bg-white dark:bg-slate-950 hover:shadow-md transition">
-            <h3 class="font-semibold">BOT JASEB</h3>
-            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Bot auto respon/auto job sederhana sesuai alur kerja kamu.</p>
-          </div>
-          <div class="rounded-xl border border-slate-200 dark:border-slate-800 p-5 bg-white dark:bg-slate-950 hover:shadow-md transition">
-            <h3 class="font-semibold">BOT CONVERT</h3>
-            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Konversi format file/teks otomatis (mis. media, teks, dsb.).</p>
-          </div>
-          <div class="rounded-xl border border-slate-200 dark:border-slate-800 p-5 bg-white dark:bg-slate-950 hover:shadow-md transition">
-            <h3 class="font-semibold">Suntik Group/Channel Telegram</h3>
-            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Bantu dorong pertumbuhan member/aktivitas group/channel.</p>
-          </div>
-          <div class="rounded-xl border border-slate-200 dark:border-slate-800 p-5 bg-white dark:bg-slate-950 hover:shadow-md transition">
-            <h3 class="font-semibold">React + View Telegram</h3>
-            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Penambahan react dan view untuk konten channel/group.</p>
-          </div>
-          <div class="rounded-xl border border-slate-200 dark:border-slate-800 p-5 bg-white dark:bg-slate-950 hover:shadow-md transition">
-            <h3 class="font-semibold">Followers & Like Instagram</h3>
-            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Paket peningkatan akun Instagram sesuai kebutuhan.</p>
-          </div>
-          <div class="rounded-xl border border-slate-200 dark:border-slate-800 p-5 bg-white dark:bg-slate-950 hover:shadow-md transition">
-            <h3 class="font-semibold">Convert All File ke VCF</h3>
-            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Konversi daftar kontak ke format VCF siap impor.</p>
-          </div>
-          <div class="rounded-xl border border-slate-200 dark:border-slate-800 p-5 bg-white dark:bg-slate-950 hover:shadow-md transition">
-            <h3 class="font-semibold">Nokos WhatsApp/Telegram</h3>
-            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Penyediaan nomor siap pakai untuk WA/Telegram.</p>
-          </div>
-          <div class="rounded-xl border border-slate-200 dark:border-slate-800 p-5 bg-white dark:bg-slate-950 hover:shadow-md transition">
-            <h3 class="font-semibold">Telegram Premium</h3>
-            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Aktivasi/penyediaan layanan Telegram Premium.</p>
-          </div>
-          <div class="rounded-xl border border-slate-200 dark:border-slate-800 p-5 bg-white dark:bg-slate-950 hover:shadow-md transition">
-            <h3 class="font-semibold">Suntik Channel WhatsApp</h3>
-            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Bantu dorong view/engagement Channel WhatsApp.</p>
-          </div>
-          <div class="rounded-xl border border-slate-200 dark:border-slate-800 p-5 bg-white dark:bg-slate-950 hover:shadow-md transition">
-            <h3 class="font-semibold">Followers/Like TikTok</h3>
-            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Paket peningkatan akun & konten TikTok.</p>
-          </div>
-          <div class="rounded-xl border border-slate-200 dark:border-slate-800 p-5 bg-white dark:bg-slate-950 hover:shadow-md transition">
-            <h3 class="font-semibold">NOKOS WA Full Garansi</h3>
-            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Nomor WA siap pakai dengan jaminan penggantian.</p>
-          </div>
-        </div>
-
-        <div class="mt-8">
-          <a href="#kontak" class="inline-flex items-center gap-2 rounded-lg bg-brand-600 px-5 py-3 text-white hover:bg-brand-700">
-            Konsultasi gratis via Telegram
-            <span>→</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Harga (contoh paket, bisa diganti) -->
-    <section id="harga" class="py-16 bg-slate-50 dark:bg-slate-900/40">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="mb-8">
-          <h2 class="text-2xl sm:text-3xl font-bold">Contoh Paket Harga</h2>
-          <p class="mt-2 text-slate-600 dark:text-slate-300">Untuk daftar lengkap, silakan hubungi kami. Paket di bawah ini hanya contoh.</p>
-        </div>
-        <div class="grid md:grid-cols-3 gap-6">
-          <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-6 bg-white dark:bg-slate-950">
-            <h3 class="font-semibold text-lg">Starter</h3>
-            <p class="text-sm text-slate-500 dark:text-slate-400">Cocok untuk testing</p>
-            <div class="mt-4 text-3xl font-bold">Rp99K</div>
-            <ul class="mt-4 space-y-2 text-sm">
-              <li>• 1 layanan dasar</li>
-              <li>• Setup cepat</li>
-              <li>• Support via chat</li>
-            </ul>
-            <a href="#kontak" class="mt-6 inline-block w-full text-center rounded-lg bg-brand-600 px-4 py-2 text-white hover:bg-brand-700">Order</a>
-          </div>
-          <div class="rounded-2xl border-2 border-brand-600 p-6 bg-white dark:bg-slate-950">
-            <h3 class="font-semibold text-lg">Pro</h3>
-            <p class="text-sm text-slate-500 dark:text-slate-400">Untuk pebisnis aktif</p>
-            <div class="mt-4 text-3xl font-bold">Rp249K</div>
-            <ul class="mt-4 space-y-2 text-sm">
-              <li>• 3 layanan</li>
-              <li>• Prioritas antrian</li>
-              <li>• Konsultasi 30 menit</li>
-            </ul>
-            <a href="#kontak" class="mt-6 inline-block w-full text-center rounded-lg bg-brand-600 px-4 py-2 text-white hover:bg-brand-700">Order</a>
-          </div>
-          <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-6 bg-white dark:bg-slate-950">
-            <h3 class="font-semibold text-lg">Business</h3>
-            <p class="text-sm text-slate-500 dark:text-slate-400">Kebutuhan rutin</p>
-            <div class="mt-4 text-3xl font-bold">Custom</div>
-            <ul class="mt-4 space-y-2 text-sm">
-              <li>• Paket sesuai tujuan</li>
-              <li>• SLA & laporan</li>
-              <li>• Dukungan khusus</li>
-            </ul>
-            <a href="#kontak" class="mt-6 inline-block w-full text-center rounded-lg bg-brand-600 px-4 py-2 text-white hover:bg-brand-700">Konsultasi</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Testimoni -->
-    <section id="testimoni" class="py-16">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="mb-8">
-          <h2 class="text-2xl sm:text-3xl font-bold">Testimoni</h2>
-          <p class="mt-2 text-slate-600 dark:text-slate-300">
-            Testimoni lengkap tersedia di channel Telegram kami.
-            <a class="text-brand-600 hover:underline" target="_blank" rel="noopener" href="https://t.me/PanoramaaStoree">Lihat di sini</a>.
-          </p>
-        </div>
-        <div class="grid md:grid-cols-3 gap-6">
-          <blockquote class="rounded-xl border border-slate-200 dark:border-slate-800 p-5 bg-white dark:bg-slate-950">
-            <p>“Respon cepat, hasil sesuai brief. Recommended!”</p>
-            <footer class="mt-3 text-sm text-slate-500">— Pelanggan A</footer>
-          </blockquote>
-          <blockquote class="rounded-xl border border-slate-200 dark:border-slate-800 p-5 bg-white dark:bg-slate-950">
-            <p>“Growth channel Telegram terasa signifikan.”</p>
-            <footer class="mt-3 text-sm text-slate-500">— Pelanggan B</footer>
-          </blockquote>
-          <blockquote class="rounded-xl border border-slate-200 dark:border-slate-800 p-5 bg-white dark:bg-slate-950">
-            <p>“Setup bot rapi, mempermudah operasional harian.”</p>
-            <footer class="mt-3 text-sm text-slate-500">— Pelanggan C</footer>
-          </blockquote>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ -->
-    <section id="faq" class="py-16 bg-slate-50 dark:bg-slate-900/40">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-2xl sm:text-3xl font-bold">FAQ</h2>
-        <div class="mt-6 space-y-3">
-          <details class="group rounded-lg border border-slate-200 dark:border-slate-800 p-4 bg-white dark:bg-slate-950">
-            <summary class="flex cursor-pointer items-center justify-between">
-              <span class="font-medium">Bagaimana proses order?</span>
-              <span class="text-slate-500 group-open:rotate-180 transition">⌄</span>
-            </summary>
-            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Hubungi kami via Telegram untuk konsultasi kebutuhan, pilih layanan, lakukan pembayaran, layanan diproses.</p>
-          </details>
-          <details class="group rounded-lg border border-slate-200 dark:border-slate-800 p-4 bg-white dark:bg-slate-950">
-            <summary class="flex cursor-pointer items-center justify-between">
-              <span class="font-medium">Apakah ada garansi?</span>
-              <span class="text-slate-500 group-open:rotate-180 transition">⌄</span>
-            </summary>
-            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Beberapa layanan memiliki garansi (mis. NOKOS WA). Detail garansi dijelaskan saat order.</p>
-          </details>
-          <details class="group rounded-lg border border-slate-200 dark:border-slate-800 p-4 bg-white dark:bg-slate-950">
-            <summary class="flex cursor-pointer items-center justify-between">
-              <span class="font-medium">Metode pembayaran?</span>
-              <span class="text-slate-500 group-open:rotate-180 transition">⌄</span>
-            </summary>
-            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Transfer bank/e-wallet. Info nomor tujuan diberikan saat chat.</p>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <!-- Kontak / CTA -->
-    <section id="kontak" class="py-16">
-      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-2xl sm:text-3xl font-bold">Siap tingkatkan aktivitas digital kamu?</h2>
-        <p class="mt-2 text-slate-600 dark:text-slate-300">Klik tombol di bawah untuk langsung chat.</p>
-        <div class="mt-6 flex flex-wrap justify-center gap-3">
-          <a target="_blank" rel="noopener" href="https://t.me/JaeHype" class="rounded-lg bg-brand-600 px-6 py-3 text-white hover:bg-brand-700">Order via Telegram @JaeHype</a>
-          <a target="_blank" rel="noopener" href="https://t.me/PanoramaaStoree" class="rounded-lg border border-slate-300 dark:border-slate-700 px-6 py-3 hover:bg-slate-100 dark:hover:bg-slate-900">Lihat Channel</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="border-t border-slate-200 dark:border-slate-800 py-8">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3">
-        <p class="text-sm text-slate-500">© <span id="year"></span> Panorama Store. All rights reserved.</p>
-        <div class="text-sm text-slate-500">
-          Kategori: Bisnis Digital / Jasa Layanan Online Berbasis Teknologi • Bentuk Usaha: PT Perorangan
-        </div>
-      </div>
-    </footer>
-
-    <script src="script.js"></script>
-  </body>
-</html>
+<p>&nbsp;</p>
+<p>Panorama Store &mdash; Jasa Layanan Online Berbasis Teknologi</p>
+<!-- Tailwind CSS via CDN (mudah dan cepat) --><!-- Header --><header class="sticky top-0 z-30 backdrop-blur bg-white/70 dark:bg-slate-950/60 border-b border-slate-200/60 dark:border-slate-800">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-16"><a class="flex items-center gap-3" href="#"> <img class="h-8 w-8" src="logo.svg" alt="Panorama Store" /> <span class="font-semibold tracking-wide">PANORAMA STORE</span> </a><nav class="hidden md:flex items-center gap-6"><a class="hover:text-brand-600" href="#layanan">Layanan</a> <a class="hover:text-brand-600" href="#harga">Harga</a> <a class="hover:text-brand-600" href="#testimoni">Testimoni</a> <a class="hover:text-brand-600" href="#faq">FAQ</a> <a class="rounded-lg bg-brand-600 px-4 py-2 text-white hover:bg-brand-700" href="#kontak">Order</a></nav>
+<div class="flex items-center gap-2"><button id="themeToggle" class="p-2 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-900"> <span id="themeIcon">🌙</span> </button> <button id="menuBtn" class="md:hidden p-2 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-900"> ☰ </button></div>
+</div>
+<div id="mobileMenu" class="hidden md:hidden pb-4"><nav class="flex flex-col gap-3"><a class="py-2 px-2 rounded hover:bg-slate-100 dark:hover:bg-slate-900" href="#layanan">Layanan</a> <a class="py-2 px-2 rounded hover:bg-slate-100 dark:hover:bg-slate-900" href="#harga">Harga</a> <a class="py-2 px-2 rounded hover:bg-slate-100 dark:hover:bg-slate-900" href="#testimoni">Testimoni</a> <a class="py-2 px-2 rounded hover:bg-slate-100 dark:hover:bg-slate-900" href="#faq">FAQ</a> <a class="py-2 px-2 rounded bg-brand-600 text-white hover:bg-brand-700" href="#kontak">Order</a></nav></div>
+</div>
+</header><!-- Hero -->
+<section class="relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-brand-50 via-white to-brand-100 dark:from-slate-900 dark:via-slate-950 dark:to-slate-900">&nbsp;</div>
+<div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+<div class="grid lg:grid-cols-2 gap-10 items-center">
+<div><span class="inline-flex items-center gap-2 text-xs font-medium px-3 py-1 rounded-full bg-brand-100 text-brand-700 dark:bg-slate-800 dark:text-brand-300"> Bisnis Digital &bull; Panorama store</span>
+<h1 class="mt-4 text-4xl sm:text-5xl font-bold leading-tight">Layanan Digital Lengkap untuk <span class="text-brand-600">Optimasi Bisnis Online</span></h1>
+<p class="mt-4 text-lg text-slate-600 dark:text-slate-300">SMM Panel, pembuatan bot otomatis, dan layanan pendukung aktivitas digital&mdash;tanpa toko fisik, serba online, dan dikelola satu orang.</p>
+<div class="mt-6 flex flex-wrap gap-3"><a class="rounded-lg bg-brand-600 px-5 py-3 text-white hover:bg-brand-700" href="#layanan">Lihat Layanan</a> <a class="rounded-lg border border-slate-300 dark:border-slate-700 px-5 py-3 hover:bg-slate-100 dark:hover:bg-slate-900" href="#kontak">Order via Telegram</a></div>
+<div class="mt-6 text-sm text-slate-500 dark:text-slate-400">Channel: <a class="text-brand-600 hover:underline" href="https://t.me/PanoramaaStoree" target="_blank" rel="noopener">t.me/PanoramaaStoree</a></div>
+</div>
+<div class="lg:justify-self-end">
+<div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-950/50 p-6 shadow-sm">
+<h3 class="text-sm uppercase tracking-wider text-slate-500 dark:text-slate-400">Gambaran Umum</h3>
+<ul class="mt-3 space-y-2 text-sm">
+<li>&bull; Operasional 100% digital, tanpa toko fisik</li>
+<li>&bull; Target: individu, pebisnis online, dan pemilik brand</li>
+<li>&bull; Fokus: efisiensi, peningkatan engagement, otomasi</li>
+<li>&bull; Respon admin cepat</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Layanan -->
+<section id="layanan" class="py-16">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="mb-8">
+<h2 class="text-2xl sm:text-3xl font-bold">Layanan Panorama Store</h2>
+<p class="mt-2 text-slate-600 dark:text-slate-300">Pilih layanan yang kamu butuhkan. Harga detail bisa ditanyakan melalui Telegram.</p>
+</div>
+<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"><!-- Item -->
+<div class="rounded-xl border border-slate-200 dark:border-slate-800 p-5 bg-white dark:bg-slate-950 hover:shadow-md transition">
+<h3 class="font-semibold">BOT JASEB</h3>
+<p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Bot auto respon/auto job sederhana sesuai alur kerja kamu.</p>
+</div>
+<div class="rounded-xl border border-slate-200 dark:border-slate-800 p-5 bg-white dark:bg-slate-950 hover:shadow-md transition">
+<h3 class="font-semibold">BOT CONVERT</h3>
+<p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Konversi format all file to vcf dengan mudah,UI yang simpel dan modern.</p>
+</div>
+<div class="rounded-xl border border-slate-200 dark:border-slate-800 p-5 bg-white dark:bg-slate-950 hover:shadow-md transition">
+<h3 class="font-semibold">Suntik Group/Channel Telegram</h3>
+<p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Bantu dorong pertumbuhan member/aktivitas group/channel, Member tidak akan pernah turun selamanya.</p>
+</div>
+<div class="rounded-xl border border-slate-200 dark:border-slate-800 p-5 bg-white dark:bg-slate-950 hover:shadow-md transition">
+<h3 class="font-semibold">React + View Telegram</h3>
+<p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Penambahan react dan view untuk postingan channel/group telegram, Proses kilat, Open request emote jika order diatas 10k.</p>
+</div>
+<div class="rounded-xl border border-slate-200 dark:border-slate-800 p-5 bg-white dark:bg-slate-950 hover:shadow-md transition">
+<h3 class="font-semibold">Followers &amp; Like Instagram</h3>
+<p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Paket peningkatan akun Instagram sesuai kebutuhan, Proses cepat dan tidak akan pernah turun selamanya, Full garansi.</p>
+</div>
+<div class="rounded-xl border border-slate-200 dark:border-slate-800 p-5 bg-white dark:bg-slate-950 hover:shadow-md transition">
+<h3 class="font-semibold">Convert All File ke VCF</h3>
+<p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Jasa Konversi daftar kontak ke format VCF siap impor.</p>
+</div>
+<div class="rounded-xl border border-slate-200 dark:border-slate-800 p-5 bg-white dark:bg-slate-950 hover:shadow-md transition">
+<h3 class="font-semibold">Nokos WhatsApp/Telegram</h3>
+<p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Penyediaan nomor siap pakai untuk WA/Telegram high kualitas.</p>
+</div>
+<div class="rounded-xl border border-slate-200 dark:border-slate-800 p-5 bg-white dark:bg-slate-950 hover:shadow-md transition">
+<h3 class="font-semibold">Telegram Premium</h3>
+<p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Aktivasi/penyediaan layanan Telegram Premium.</p>
+</div>
+<div class="rounded-xl border border-slate-200 dark:border-slate-800 p-5 bg-white dark:bg-slate-950 hover:shadow-md transition">
+<h3 class="font-semibold">Suntik Channel WhatsApp</h3>
+<p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Bantu dorong view/engagement Channel WhatsApp.</p>
+</div>
+<div class="rounded-xl border border-slate-200 dark:border-slate-800 p-5 bg-white dark:bg-slate-950 hover:shadow-md transition">
+<h3 class="font-semibold">Followers/Like TikTok</h3>
+<p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Paket peningkatan akun &amp; konten TikTok.</p>
+</div>
+<div class="rounded-xl border border-slate-200 dark:border-slate-800 p-5 bg-white dark:bg-slate-950 hover:shadow-md transition">
+<h3 class="font-semibold">NOKOS WA Full Garansi</h3>
+<p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Nomor WA siap pakai dengan jaminan 1 bulan penggantian.</p>
+</div>
+</div>
+<div class="mt-8"><a class="inline-flex items-center gap-2 rounded-lg bg-brand-600 px-5 py-3 text-white hover:bg-brand-700" href="t.me/JaeHype"> Konsultasi gratis via Telegram &rarr; </a></div>
+</div>
+</section>
+<!-- Harga (contoh paket, bisa diganti) -->
+<section id="harga" class="py-16 bg-slate-50 dark:bg-slate-900/40">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="mb-8">
+<h2 class="text-2xl sm:text-3xl font-bold">Harga Bot&nbsp;</h2>
+<p class="mt-2 text-slate-600 dark:text-slate-300">Untuk daftar lengkap, silakan hubungi kami. Paket di bawah ini hanya untuk layanan bot.</p>
+</div>
+<div class="grid md:grid-cols-3 gap-6">
+<div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-6 bg-white dark:bg-slate-950">
+<h3 class="font-semibold text-lg">Bot CV bulanan</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">Cocok untuk pengguna dengan low bugdet</p>
+<div class="mt-4 text-3xl font-bold">Rp20K/Perbulan</div>
+<ul class="mt-4 space-y-2 text-sm">
+<li>&bull; 1 bulan full akses bot @panoramacvbot</li>
+<li>&bull; 1 bot cadangan jika bot utama eror</li>
+<li>&bull; Fast respon, Jaminan anti eror</li>
+</ul>
+<a class="mt-6 inline-block w-full text-center rounded-lg bg-brand-600 px-4 py-2 text-white hover:bg-brand-700" href="t.me/Jaehype">Order</a></div>
+<div class="rounded-2xl border-2 border-brand-600 p-6 bg-white dark:bg-slate-950">
+<h3 class="font-semibold text-lg">Bot CV permanen</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">Bot Convert durasi permanen tanpa bayar apapun setelahnya.</p>
+<div class="mt-4 text-3xl font-bold">Rp199K</div>
+<ul class="mt-4 space-y-2 text-sm">
+<li>&bull; Durasi Sampai kiamat</li>
+<li>&bull; Garansi jika eror</li>
+<li>&bull; Prioritas layanan</li>
+</ul>
+<a class="mt-6 inline-block w-full text-center rounded-lg bg-brand-600 px-4 py-2 text-white hover:bg-brand-700" href="#kontak">Order</a></div>
+<div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-6 bg-white dark:bg-slate-950">
+<h3 class="font-semibold text-lg">Bot Jase Bulanan</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">Bot auto broadcast dengan UI simpel dan modern.</p>
+<div class="mt-4 text-3xl font-bold">Rp10K/Per bulan</div>
+<ul class="mt-4 space-y-2 text-sm">
+<li>&bull; Bot broadcast dengan fitur canggih</li>
+<li>&bull; ON 24 jam no eror</li>
+<li>&bull; Selalu di update</li>
+</ul>
+<a href="t.me/Jaehype">Orde</a>r</div>
+</div>
+</div>
+</section>
+<!-- Testimoni -->
+<section id="testimoni" class="py-16">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="mb-8">
+<h2 class="text-2xl sm:text-3xl font-bold">Testimoni</h2>
+<p class="mt-2 text-slate-600 dark:text-slate-300">Testimoni lengkap tersedia di channel Telegram kami. <a class="text-brand-600 hover:underline" href="https://t.me/PanoramaaStoree" target="_blank" rel="noopener">Lihat di sini</a>.</p>
+</div>
+<div class="grid md:grid-cols-3 gap-6">
+<blockquote class="rounded-xl border border-slate-200 dark:border-slate-800 p-5 bg-white dark:bg-slate-950">
+<p>&ldquo;⭐️⭐️⭐️⭐️⭐️<br />Transaksinya cepet banget, seller juga ramah dan fast respon. Produk digitalnya sesuai deskripsi, ga bikin ribet. Puas banget belanja di sini, pasti balik lagi!&rdquo;</p>
+<footer class="mt-3 text-sm text-slate-500">&mdash; Telegram Username&nbsp;@at_Diegoo</footer></blockquote>
+<blockquote class="rounded-xl border border-slate-200 dark:border-slate-800 p-5 bg-white dark:bg-slate-950">
+<p>&ldquo;amanah dan terbaik ramah juga admin nya&rdquo;</p>
+<footer class="mt-3 text-sm text-slate-500">&mdash; Telegram Username&nbsp;@masbonnz</footer></blockquote>
+<blockquote class="rounded-xl border border-slate-200 dark:border-slate-800 p-5 bg-white dark:bg-slate-950">
+<p>&ldquo;Menurut saya harganya cukup bersahabat, sebanding dengan kualitas layanan yang diberikan, nggak pernah mengecewakan.&rdquo;</p>
+<footer class="mt-3 text-sm text-slate-500">&mdash; Telegram username&nbsp;@fairuzw</footer></blockquote>
+</div>
+</div>
+</section>
+<!-- FAQ -->
+<section id="faq" class="py-16 bg-slate-50 dark:bg-slate-900/40">
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+<h2 class="text-2xl sm:text-3xl font-bold">FAQ</h2>
+<div class="mt-6 space-y-3"><details class="group rounded-lg border border-slate-200 dark:border-slate-800 p-4 bg-white dark:bg-slate-950" open=""> <summary class="flex cursor-pointer items-center justify-between"> <span class="font-medium">Bagaimana proses order?</span> <span class="text-slate-500 group-open:rotate-180 transition">⌄</span> </summary>
+<p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Hubungi kami via Telegram untuk konsultasi kebutuhan, pilih layanan, lakukan pembayaran, layanan diproses.</p>
+</details> <details class="group rounded-lg border border-slate-200 dark:border-slate-800 p-4 bg-white dark:bg-slate-950" open=""> <summary class="flex cursor-pointer items-center justify-between"> <span class="font-medium">Apakah ada garansi?</span> <span class="text-slate-500 group-open:rotate-180 transition">⌄</span> </summary>
+<p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Beberapa layanan memiliki garansi (mis. NOKOS WA,BOT). Detail garansi dijelaskan saat order.</p>
+</details> <details class="group rounded-lg border border-slate-200 dark:border-slate-800 p-4 bg-white dark:bg-slate-950" open=""> <summary class="flex cursor-pointer items-center justify-between"> <span class="font-medium">Metode pembayaran?</span> <span class="text-slate-500 group-open:rotate-180 transition">⌄</span> </summary>
+<p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Transfer bank/e-wallet/Qris. Support banyak metode pembayaran</p>
+</details></div>
+</div>
+</section>
+<!-- Kontak / CTA -->
+<section id="kontak" class="py-16">
+<div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+<h2 class="text-2xl sm:text-3xl font-bold">Siap tingkatkan aktivitas digital kamu?</h2>
+<p class="mt-2 text-slate-600 dark:text-slate-300">Klik tombol di bawah untuk langsung chat.</p>
+<div class="mt-6 flex flex-wrap justify-center gap-3"><a class="rounded-lg bg-brand-600 px-6 py-3 text-white hover:bg-brand-700" href="https://t.me/JaeHype" target="_blank" rel="noopener">Order via Telegram </a>&nbsp;<a class="rounded-lg border border-slate-300 dark:border-slate-700 px-6 py-3 hover:bg-slate-100 dark:hover:bg-slate-900" href="https://t.me/PanoramaaStoree" target="_blank" rel="noopener">Lihat Channel</a></div>
+</div>
+</section>
+<!-- Footer --><footer class="border-t border-slate-200 dark:border-slate-800 py-8">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+<p class="text-sm text-slate-500">&copy; <span id="year"></span> Panorama Store. All rights reserved.</p>
+<div class="text-sm text-slate-500">Kategori: Bisnis Digital / Jasa Layanan Online Berbasis Teknologi &bull; Bentuk Usaha: PT Perorangan</div>
+</div>
+</footer>
