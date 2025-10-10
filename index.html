@@ -35,8 +35,23 @@
       };
     </script>
     <style>
-      /* Perapihan kecil jika editor WYSIWYG pernah menyisipkan <p>&nbsp;</p> */
+      /* Bersihkan sisa tag dari WYSIWYG */
       body > p:first-child { display:none; }
+
+      /* Efek pilihan paket (border berubah + zoom) */
+      .price-card { transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease; }
+      .price-card:hover { box-shadow: 0 10px 20px -10px rgba(2, 6, 23, 0.2); }
+      .plan-selected {
+        border-width: 2px !important;
+        border-color: #2563eb !important;            /* brand-600 */
+        box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.18);/* ring efek */
+        transform: scale(1.03);
+      }
+      @keyframes plan-zoom {
+        from { transform: scale(1); }
+        to   { transform: scale(1.03); }
+      }
+      .plan-zoom { animation: plan-zoom 180ms ease both; }
     </style>
   </head>
   <body class="bg-white text-slate-800 dark:bg-slate-950 dark:text-slate-100">
@@ -82,8 +97,9 @@
       <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div class="grid lg:grid-cols-2 gap-10 items-center">
           <div>
+            <!-- HANYA bagian ini yang diminta diubah -->
             <span class="inline-flex items-center gap-2 text-xs font-medium px-3 py-1 rounded-full bg-brand-100 text-brand-700 dark:bg-slate-800 dark:text-brand-300">
-              Bisnis Digital • PT Perorangan
+              Bisnis Digital • Usaha Perorangan
             </span>
             <h1 class="mt-4 text-4xl sm:text-5xl font-bold leading-tight">
               Layanan Digital Lengkap untuk <span class="text-brand-600">Optimasi Bisnis Online</span>
@@ -185,7 +201,12 @@
           <p class="mt-2 text-slate-600 dark:text-slate-300">Untuk daftar lengkap, silakan hubungi kami. Paket di bawah ini khusus layanan bot.</p>
         </div>
         <div class="grid md:grid-cols-3 gap-6">
-          <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-6 bg-white dark:bg-slate-950">
+          <!-- CARD 1 -->
+          <div
+            id="plan-cv-bulanan"
+            data-plan="cv-bulanan"
+            tabindex="0" role="button" aria-pressed="false"
+            class="price-card rounded-2xl border border-slate-200 dark:border-slate-800 p-6 bg-white dark:bg-slate-950">
             <h3 class="font-semibold text-lg">Bot CV Bulanan</h3>
             <p class="text-sm text-slate-500 dark:text-slate-400">Cocok untuk pengguna dengan budget rendah.</p>
             <div class="mt-4 text-3xl font-bold">Rp20K/bulan</div>
@@ -196,7 +217,13 @@
             </ul>
             <a href="https://t.me/JaeHype" target="_blank" rel="noopener noreferrer" class="mt-6 inline-block w-full text-center rounded-lg bg-brand-600 px-4 py-2 text-white hover:bg-brand-700">Order</a>
           </div>
-          <div class="rounded-2xl border-2 border-brand-600 p-6 bg-white dark:bg-slate-950">
+
+          <!-- CARD 2 (default terpilih) -->
+          <div
+            id="plan-cv-permanen"
+            data-plan="cv-permanen"
+            tabindex="0" role="button" aria-pressed="true"
+            class="price-card rounded-2xl border border-slate-200 dark:border-slate-800 p-6 bg-white dark:bg-slate-950">
             <h3 class="font-semibold text-lg">Bot CV Permanen</h3>
             <p class="text-sm text-slate-500 dark:text-slate-400">Bot convert durasi permanen.</p>
             <div class="mt-4 text-3xl font-bold">Rp199K</div>
@@ -207,7 +234,13 @@
             </ul>
             <a href="https://t.me/JaeHype" target="_blank" rel="noopener noreferrer" class="mt-6 inline-block w-full text-center rounded-lg bg-brand-600 px-4 py-2 text-white hover:bg-brand-700">Order</a>
           </div>
-          <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-6 bg-white dark:bg-slate-950">
+
+          <!-- CARD 3 -->
+          <div
+            id="plan-jaseb-bulanan"
+            data-plan="jaseb-bulanan"
+            tabindex="0" role="button" aria-pressed="false"
+            class="price-card rounded-2xl border border-slate-200 dark:border-slate-800 p-6 bg-white dark:bg-slate-950">
             <h3 class="font-semibold text-lg">Bot JASEB Bulanan</h3>
             <p class="text-sm text-slate-500 dark:text-slate-400">Bot auto-broadcast dengan UI simpel dan modern.</p>
             <div class="mt-4 text-3xl font-bold">Rp10K/bulan</div>
@@ -301,7 +334,7 @@
       </div>
     </footer>
 
-    <!-- Inline script agar tidak bergantung file terpisah -->
+    <!-- Inline script -->
     <script>
       // Dark mode toggle + persist
       const html = document.documentElement;
@@ -328,6 +361,33 @@
 
       // Year
       document.getElementById('year').textContent = new Date().getFullYear();
+
+      // =======================
+      // Interaksi Harga Bot
+      // =======================
+      const planCards = Array.from(document.querySelectorAll('.price-card'));
+      function selectPlan(el) {
+        planCards.forEach(c => {
+          c.classList.remove('plan-selected', 'plan-zoom');
+          c.setAttribute('aria-pressed', 'false');
+        });
+        el.classList.add('plan-selected', 'plan-zoom');
+        el.setAttribute('aria-pressed', 'true');
+      }
+      // Default: pilih kartu tengah (cv-permanen) jika ada, kalau tidak pilih pertama
+      const defaultCard = document.getElementById('plan-cv-permanen') || planCards[0];
+      if (defaultCard) selectPlan(defaultCard);
+
+      // Klik dan keyboard support
+      planCards.forEach(card => {
+        card.addEventListener('click', () => selectPlan(card));
+        card.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            selectPlan(card);
+          }
+        });
+      });
     </script>
   </body>
 </html>
