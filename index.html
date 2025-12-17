@@ -27,7 +27,7 @@
                 200: '#ddd6fe',
                 300: '#c4b5fd',
                 400: '#a78bfa',
-                500: '#8b5cf6', // Violet
+                500: '#8b5cf6',
                 600: '#7c3aed',
                 700: '#6d28d9',
               },
@@ -37,13 +37,12 @@
                 200: '#f5d0fe',
                 300: '#f0abfc',
                 400: '#e879f9',
-                500: '#d946ef', // Fuchsia
+                500: '#d946ef',
                 600: '#c026d3',
               }
             },
             animation: {
               'blob': 'blob 7s infinite',
-              'float': 'float 6s ease-in-out infinite',
             },
             keyframes: {
               blob: {
@@ -51,10 +50,6 @@
                 '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
                 '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
                 '100%': { transform: 'translate(0px, 0px) scale(1)' },
-              },
-              float: {
-                '0%, 100%': { transform: 'translateY(0)' },
-                '50%': { transform: 'translateY(-20px)' },
               }
             }
           },
@@ -64,7 +59,59 @@
     <style>
       body {
         font-family: 'Plus Jakarta Sans', sans-serif;
+        cursor: none; /* Hide default cursor */
       }
+      
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+      .dark ::-webkit-scrollbar-track {
+        background: #0f172a;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #8b5cf6;
+        border-radius: 5px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #7c3aed;
+      }
+
+      /* Custom Cursor Styles */
+      #cursor-dot, #cursor-outline {
+        position: fixed;
+        top: 0;
+        left: 0;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        z-index: 9999;
+        pointer-events: none;
+      }
+      #cursor-dot {
+        width: 8px;
+        height: 8px;
+        background-color: #d946ef;
+      }
+      #cursor-outline {
+        width: 40px;
+        height: 40px;
+        border: 2px solid rgba(139, 92, 246, 0.5);
+        transition: width 0.2s, height 0.2s, background-color 0.2s;
+      }
+      body:hover #cursor-outline {
+        opacity: 1;
+      }
+      /* Hover state for cursor */
+      body.hovering #cursor-outline {
+        width: 60px;
+        height: 60px;
+        background-color: rgba(139, 92, 246, 0.1);
+        border-color: #d946ef;
+      }
+
       /* Animated Background */
       .bg-animated {
         position: fixed;
@@ -74,7 +121,6 @@
         height: 100%;
         z-index: -1;
         overflow: hidden;
-        background: #0f172a; /* Fallback */
       }
       .blob-1 { background: radial-gradient(circle, #7c3aed 0%, transparent 70%); }
       .blob-2 { background: radial-gradient(circle, #d946ef 0%, transparent 70%); }
@@ -92,61 +138,87 @@
         border: 1px solid rgba(255, 255, 255, 0.05);
       }
       
+      /* Card Styles with 3D capability */
       .glass-card {
         background: rgba(255, 255, 255, 0.8);
         backdrop-filter: blur(10px);
-        transition: all 0.3s ease;
+        transition: transform 0.1s ease, box-shadow 0.3s ease; /* Fast transform for tilt */
+        transform-style: preserve-3d;
+        perspective: 1000px;
       }
       .dark .glass-card {
         background: rgba(30, 41, 59, 0.7);
       }
-      .glass-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 20px 40px -15px rgba(124, 58, 237, 0.3);
-        border-color: #d946ef;
-      }
-
+      
       /* Text Gradient */
       .text-gradient {
         background: linear-gradient(to right, #7c3aed, #d946ef);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
+
+      /* Scroll Reveal Classes */
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 1s cubic-bezier(0.5, 0, 0, 1);
+      }
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal-delay-100 { transition-delay: 0.1s; }
+      .reveal-delay-200 { transition-delay: 0.2s; }
+      .reveal-delay-300 { transition-delay: 0.3s; }
+
+      /* Typewriter Cursor */
+      .typing-cursor::after {
+        content: '|';
+        animation: blink 1s infinite;
+      }
+      @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+      }
     </style>
   </head>
-  <body class="text-slate-800 dark:text-slate-100 antialiased selection:bg-fuchsia-300 selection:text-fuchsia-900">
+  <body class="text-slate-800 dark:text-slate-100 antialiased selection:bg-fuchsia-300 selection:text-fuchsia-900 overflow-x-hidden">
     
-    <!-- Animated Background Elements -->
-    <div class="bg-animated bg-slate-50 dark:bg-slate-950">
-      <div class="absolute top-0 -left-4 w-96 h-96 blob-1 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
-      <div class="absolute top-0 -right-4 w-96 h-96 blob-2 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
-      <div class="absolute -bottom-32 left-20 w-96 h-96 blob-3 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+    <!-- Custom Cursor Elements -->
+    <div id="cursor-dot" class="hidden md:block"></div>
+    <div id="cursor-outline" class="hidden md:block"></div>
+
+    <!-- Animated Background Elements (Parallax Target) -->
+    <div class="bg-animated bg-slate-50 dark:bg-slate-950" id="parallax-bg">
+      <div data-speed="2" class="absolute top-0 -left-4 w-96 h-96 blob-1 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+      <div data-speed="-2" class="absolute top-0 -right-4 w-96 h-96 blob-2 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+      <div data-speed="4" class="absolute -bottom-32 left-20 w-96 h-96 blob-3 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
     </div>
 
     <!-- Header -->
-    <header class="fixed w-full top-0 z-50 transition-all duration-300">
-      <div class="glass border-b border-white/20 dark:border-slate-800/50">
+    <header id="main-header" class="fixed w-full top-0 z-50 transition-all duration-300">
+      <div class="glass border-b border-white/20 dark:border-slate-800/50 transition-all duration-300" id="nav-glass">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="flex items-center justify-between h-20">
+          <div class="flex items-center justify-between h-20 transition-all duration-300" id="nav-container">
             <!-- Logo -->
-            <a href="#" class="flex items-center gap-2 group">
-              <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-secondary-500 flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:scale-110 transition-transform">
+            <a href="#" class="flex items-center gap-2 group interactable">
+              <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-secondary-500 flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:rotate-12 transition-transform duration-300">
                 P
               </div>
-              <span class="font-bold text-lg tracking-tight">PANORAMA</span>
+              <span class="font-bold text-lg tracking-tight group-hover:text-primary-600 transition-colors">PANORAMA</span>
             </a>
 
             <!-- Desktop Nav -->
             <nav class="hidden md:flex items-center gap-8 font-medium text-sm">
-              <a href="#layanan" class="hover:text-primary-600 dark:hover:text-primary-400 transition">Layanan</a>
-              <a href="#hot-offer" class="text-secondary-600 dark:text-secondary-400 hover:text-secondary-500 animate-pulse font-bold">Hot Offer 🔥</a>
-              <a href="#harga" class="hover:text-primary-600 dark:hover:text-primary-400 transition">Harga Bot</a>
-              <a href="#testimoni" class="hover:text-primary-600 dark:hover:text-primary-400 transition">Testimoni</a>
-              <a href="https://t.me/stuaart" target="_blank" class="rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-6 py-2.5 font-semibold hover:shadow-lg hover:shadow-primary-500/20 transition-all transform hover:-translate-y-0.5">
+              <a href="#layanan" class="interactable hover:text-primary-600 dark:hover:text-primary-400 transition hover:-translate-y-0.5 transform inline-block">Layanan</a>
+              <a href="#hot-offer" class="interactable text-secondary-600 dark:text-secondary-400 hover:text-secondary-500 animate-pulse font-bold">Hot Offer 🔥</a>
+              <a href="#harga" class="interactable hover:text-primary-600 dark:hover:text-primary-400 transition hover:-translate-y-0.5 transform inline-block">Harga Bot</a>
+              <a href="#testimoni" class="interactable hover:text-primary-600 dark:hover:text-primary-400 transition hover:-translate-y-0.5 transform inline-block">Testimoni</a>
+              <a href="https://t.me/stuaart" target="_blank" class="interactable rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-6 py-2.5 font-semibold hover:shadow-lg hover:shadow-primary-500/30 hover:scale-105 transition-all duration-300">
                 Hubungi Admin
               </a>
               <!-- Theme Toggle -->
-              <button id="themeToggle" class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition">
+              <button id="themeToggle" class="interactable p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition transform active:scale-90">
                 <span id="themeIcon">🌙</span>
               </button>
             </nav>
@@ -163,7 +235,7 @@
       </div>
       
       <!-- Mobile Menu Dropdown -->
-      <div id="mobileMenu" class="hidden glass border-b border-white/20 dark:border-slate-800/50 md:hidden">
+      <div id="mobileMenu" class="hidden glass border-b border-white/20 dark:border-slate-800/50 md:hidden origin-top transform transition-transform duration-300">
         <nav class="flex flex-col p-4 gap-4 text-center font-medium">
           <a href="#layanan" class="py-2 hover:text-primary-600">Layanan</a>
           <a href="#hot-offer" class="py-2 text-secondary-600 font-bold">Hot Offer 🔥</a>
@@ -174,48 +246,60 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden min-h-screen flex items-center">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-        <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 dark:bg-slate-800/50 border border-primary-200 dark:border-primary-900 text-primary-700 dark:text-primary-300 text-sm font-semibold mb-8 animate-float backdrop-blur-sm shadow-sm">
+        <span class="reveal inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 dark:bg-slate-800/50 border border-primary-200 dark:border-primary-900 text-primary-700 dark:text-primary-300 text-sm font-semibold backdrop-blur-sm mb-8 hover:scale-105 transition-transform duration-300 cursor-default">
           <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
           Solusi Digital & Bisnis Online
         </span>
         
-        <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight">
+        <h1 class="reveal reveal-delay-100 text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight">
           Optimasi Bisnis dengan <br>
-          <span class="text-gradient">Teknologi Digital</span>
+          <span class="text-gradient typing-cursor" id="typewriter-text"></span>
         </h1>
         
-        <p class="mt-6 text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed">
+        <p class="reveal reveal-delay-200 mt-6 text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed">
           Platform serba ada untuk kebutuhan SMM, Bot Telegram canggih, dan peluang cuan dari aset digitalmu. Operasional 100% Online.
         </p>
         
-        <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <a href="#layanan" class="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-primary-600 to-secondary-600 text-white font-bold text-lg shadow-lg shadow-primary-500/30 hover:shadow-primary-500/50 transition-all transform hover:scale-105">
+        <div class="reveal reveal-delay-300 mt-10 flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <a href="#layanan" class="interactable w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-primary-600 to-secondary-600 text-white font-bold text-lg shadow-lg shadow-primary-500/30 hover:shadow-xl hover:shadow-primary-500/50 hover:-translate-y-1 transition-all duration-300">
             Eksplor Layanan
           </a>
-          <a href="https://t.me/stuaart" target="_blank" class="w-full sm:w-auto px-8 py-4 rounded-full glass border border-slate-200 dark:border-slate-700 font-bold text-lg hover:bg-white/50 dark:hover:bg-slate-800/50 transition-all">
+          <a href="https://t.me/stuaart" target="_blank" class="interactable w-full sm:w-auto px-8 py-4 rounded-full glass border border-slate-200 dark:border-slate-700 font-bold text-lg hover:bg-white/50 dark:hover:bg-slate-800/50 hover:-translate-y-1 transition-all duration-300">
             Konsultasi Gratis
           </a>
         </div>
 
         <!-- Stats / Trust Indicators -->
-        <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 opacity-80">
-          <div><h3 class="text-3xl font-bold text-slate-900 dark:text-white">24/7</h3><p class="text-sm">Layanan Bot</p></div>
-          <div><h3 class="text-3xl font-bold text-slate-900 dark:text-white">100+</h3><p class="text-sm">Pelanggan Puas</p></div>
-          <div><h3 class="text-3xl font-bold text-slate-900 dark:text-white">Fast</h3><p class="text-sm">Respon Admin</p></div>
-          <div><h3 class="text-3xl font-bold text-slate-900 dark:text-white">Aman</h3><p class="text-sm">Transaksi Terjamin</p></div>
+        <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div class="reveal reveal-delay-100 p-4 rounded-2xl hover:bg-white/10 transition duration-300">
+            <h3 class="text-3xl font-bold text-slate-900 dark:text-white flex justify-center"><span class="counter-value" data-target="24">0</span>/7</h3>
+            <p class="text-sm">Layanan Bot</p>
+          </div>
+          <div class="reveal reveal-delay-200 p-4 rounded-2xl hover:bg-white/10 transition duration-300">
+            <h3 class="text-3xl font-bold text-slate-900 dark:text-white flex justify-center"><span class="counter-value" data-target="100">0</span>+</h3>
+            <p class="text-sm">Pelanggan Puas</p>
+          </div>
+          <div class="reveal reveal-delay-300 p-4 rounded-2xl hover:bg-white/10 transition duration-300">
+            <h3 class="text-3xl font-bold text-slate-900 dark:text-white">Fast</h3>
+            <p class="text-sm">Respon Admin</p>
+          </div>
+          <div class="reveal reveal-delay-100 p-4 rounded-2xl hover:bg-white/10 transition duration-300">
+            <h3 class="text-3xl font-bold text-slate-900 dark:text-white">Aman</h3>
+            <p class="text-sm">Transaksi Terjamin</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- SPECIAL OFFER SECTION (NEW PRODUCT) -->
+    <!-- SPECIAL OFFER SECTION -->
     <section id="hot-offer" class="py-10">
       <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="relative rounded-3xl overflow-hidden shadow-2xl shadow-secondary-500/20 group">
+        <div class="reveal relative rounded-3xl overflow-hidden shadow-2xl shadow-secondary-500/20 group hover:shadow-secondary-500/40 transition-shadow duration-500">
           <!-- Background Gradient -->
           <div class="absolute inset-0 bg-gradient-to-r from-violet-600 via-fuchsia-600 to-orange-500 opacity-90 transition-opacity group-hover:opacity-100"></div>
-          <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-20"></div>
+          <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-20 animate-[pulse_4s_ease-in-out_infinite]"></div>
           
           <div class="relative z-10 p-8 md:p-12 text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-8">
             <div class="space-y-4">
@@ -229,14 +313,14 @@
                 Akun Instagram tahun 2024 ke bawah bisa dimonetisasi, loh! Bukan scam, bukan ilegal. Murni untuk keperluan promosi (buzzer).
               </p>
               <ul class="text-white/80 text-sm space-y-1">
-                <li>✅ Aman & Legal</li>
-                <li>✅ Khusus akun tua/lama lebih bernilai</li>
-                <li>✅ Panduan lengkap tersedia</li>
+                <li class="flex items-center gap-2">✅ Aman & Legal</li>
+                <li class="flex items-center gap-2">✅ Khusus akun tua/lama lebih bernilai</li>
+                <li class="flex items-center gap-2">✅ Panduan lengkap tersedia</li>
               </ul>
             </div>
             
             <div class="flex-shrink-0">
-              <a href="https://t.me/stuaart" target="_blank" class="inline-block px-8 py-4 bg-white text-fuchsia-700 font-bold rounded-2xl shadow-lg hover:bg-slate-50 hover:scale-105 transition-all">
+              <a href="https://t.me/stuaart" target="_blank" class="interactable inline-block px-8 py-4 bg-white text-fuchsia-700 font-bold rounded-2xl shadow-lg hover:bg-slate-50 hover:scale-105 hover:rotate-2 transition-all duration-300">
                 Tanya Harga & Tutor <br>
                 <span class="text-sm font-normal text-slate-500">ke @stuaart</span>
               </a>
@@ -249,56 +333,56 @@
     <!-- Layanan Grid -->
     <section id="layanan" class="py-20">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
+        <div class="text-center mb-16 reveal">
           <h2 class="text-3xl md:text-4xl font-bold mb-4">Layanan Unggulan</h2>
           <p class="text-slate-600 dark:text-slate-400">Pilih layanan digital yang sesuai dengan kebutuhan bisnismu.</p>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <!-- Card Template -->
-          <div class="glass-card rounded-2xl p-6 border border-white/40 dark:border-slate-700">
-            <div class="w-12 h-12 rounded-lg bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-300 flex items-center justify-center text-2xl mb-4">🤖</div>
-            <h3 class="font-bold text-xl mb-2">Bot JASEB</h3>
+          <!-- Card Template with Tilt Class -->
+          <div class="reveal tilt-card glass-card rounded-2xl p-6 border border-white/40 dark:border-slate-700 interactable group">
+            <div class="w-12 h-12 rounded-lg bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-300 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform duration-300">🤖</div>
+            <h3 class="font-bold text-xl mb-2 group-hover:text-primary-600 transition-colors">Bot JASEB</h3>
             <p class="text-sm text-slate-500 dark:text-slate-400">Bot auto broadcast sederhana dan modern. Kirim pesan massal dengan mudah.</p>
           </div>
 
-          <div class="glass-card rounded-2xl p-6 border border-white/40 dark:border-slate-700">
-            <div class="w-12 h-12 rounded-lg bg-secondary-100 dark:bg-secondary-900/30 text-secondary-600 dark:text-secondary-300 flex items-center justify-center text-2xl mb-4">📂</div>
-            <h3 class="font-bold text-xl mb-2">Bot Convert VCF</h3>
+          <div class="reveal tilt-card glass-card rounded-2xl p-6 border border-white/40 dark:border-slate-700 interactable group reveal-delay-100">
+            <div class="w-12 h-12 rounded-lg bg-secondary-100 dark:bg-secondary-900/30 text-secondary-600 dark:text-secondary-300 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform duration-300">📂</div>
+            <h3 class="font-bold text-xl mb-2 group-hover:text-secondary-600 transition-colors">Bot Convert VCF</h3>
             <p class="text-sm text-slate-500 dark:text-slate-400">Konversi format all file to VCF dengan UI simpel & modern. Rapikan kontakmu.</p>
           </div>
 
-          <div class="glass-card rounded-2xl p-6 border border-white/40 dark:border-slate-700">
-            <div class="w-12 h-12 rounded-lg bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 flex items-center justify-center text-2xl mb-4">👥</div>
-            <h3 class="font-bold text-xl mb-2">Member Telegram</h3>
+          <div class="reveal tilt-card glass-card rounded-2xl p-6 border border-white/40 dark:border-slate-700 interactable group reveal-delay-200">
+            <div class="w-12 h-12 rounded-lg bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform duration-300">👥</div>
+            <h3 class="font-bold text-xl mb-2 group-hover:text-blue-600 transition-colors">Member Telegram</h3>
             <p class="text-sm text-slate-500 dark:text-slate-400">Suntik member Group/Channel Telegram untuk meningkatkan kredibilitas.</p>
           </div>
 
-          <div class="glass-card rounded-2xl p-6 border border-white/40 dark:border-slate-700">
-            <div class="w-12 h-12 rounded-lg bg-pink-100 dark:bg-pink-900/30 text-pink-600 dark:text-pink-300 flex items-center justify-center text-2xl mb-4">📸</div>
-            <h3 class="font-bold text-xl mb-2">Instagram Booster</h3>
+          <div class="reveal tilt-card glass-card rounded-2xl p-6 border border-white/40 dark:border-slate-700 interactable group">
+            <div class="w-12 h-12 rounded-lg bg-pink-100 dark:bg-pink-900/30 text-pink-600 dark:text-pink-300 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform duration-300">📸</div>
+            <h3 class="font-bold text-xl mb-2 group-hover:text-pink-600 transition-colors">Instagram Booster</h3>
             <p class="text-sm text-slate-500 dark:text-slate-400">Followers & Like Instagram. Tingkatkan engagement akunmu secara instan.</p>
           </div>
 
-          <div class="glass-card rounded-2xl p-6 border border-white/40 dark:border-slate-700">
-            <div class="w-12 h-12 rounded-lg bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-300 flex items-center justify-center text-2xl mb-4">📞</div>
-            <h3 class="font-bold text-xl mb-2">Nomor Virtual (Nokos)</h3>
+          <div class="reveal tilt-card glass-card rounded-2xl p-6 border border-white/40 dark:border-slate-700 interactable group reveal-delay-100">
+            <div class="w-12 h-12 rounded-lg bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-300 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform duration-300">📞</div>
+            <h3 class="font-bold text-xl mb-2 group-hover:text-green-600 transition-colors">Nomor Virtual (Nokos)</h3>
             <p class="text-sm text-slate-500 dark:text-slate-400">Nomor siap pakai untuk WA/Telegram. Tersedia opsi garansi penuh.</p>
           </div>
 
-          <div class="glass-card rounded-2xl p-6 border border-white/40 dark:border-slate-700">
-            <div class="w-12 h-12 rounded-lg bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-300 flex items-center justify-center text-2xl mb-4">🌟</div>
-            <h3 class="font-bold text-xl mb-2">Telegram Premium</h3>
+          <div class="reveal tilt-card glass-card rounded-2xl p-6 border border-white/40 dark:border-slate-700 interactable group reveal-delay-200">
+            <div class="w-12 h-12 rounded-lg bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-300 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform duration-300">🌟</div>
+            <h3 class="font-bold text-xl mb-2 group-hover:text-indigo-600 transition-colors">Telegram Premium</h3>
             <p class="text-sm text-slate-500 dark:text-slate-400">Aktivasi fitur premium Telegram tanpa ribet. Harga bersaing.</p>
           </div>
           
-           <div class="glass-card rounded-2xl p-6 border border-white/40 dark:border-slate-700">
-            <div class="w-12 h-12 rounded-lg bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-300 flex items-center justify-center text-2xl mb-4">🎵</div>
-            <h3 class="font-bold text-xl mb-2">TikTok Services</h3>
+           <div class="reveal tilt-card glass-card rounded-2xl p-6 border border-white/40 dark:border-slate-700 interactable group">
+            <div class="w-12 h-12 rounded-lg bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-300 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform duration-300">🎵</div>
+            <h3 class="font-bold text-xl mb-2 group-hover:text-red-600 transition-colors">TikTok Services</h3>
             <p class="text-sm text-slate-500 dark:text-slate-400">Followers & Like TikTok. Dorong kontenmu masuk FYP.</p>
           </div>
 
-          <div class="glass-card rounded-2xl p-6 border border-white/40 dark:border-slate-700 flex flex-col justify-center items-center text-center bg-gradient-to-br from-primary-50 to-secondary-50 dark:from-slate-900 dark:to-slate-800">
+          <div class="reveal tilt-card glass-card rounded-2xl p-6 border border-white/40 dark:border-slate-700 flex flex-col justify-center items-center text-center bg-gradient-to-br from-primary-50 to-secondary-50 dark:from-slate-800 dark:to-slate-800 interactable group reveal-delay-100">
             <h3 class="font-bold text-lg mb-2">Layanan Lainnya?</h3>
             <a href="https://t.me/stuaart" class="text-primary-600 font-semibold hover:underline">Chat Admin @stuaart</a>
           </div>
@@ -307,11 +391,11 @@
     </section>
 
     <!-- Harga Bot -->
-    <section id="harga" class="py-20 relative">
+    <section id="harga" class="py-20 relative overflow-hidden">
       <div class="absolute inset-0 bg-slate-100/50 dark:bg-slate-900/50 skew-y-3 transform origin-bottom-right z-[-1]"></div>
       
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
+        <div class="text-center mb-12 reveal">
           <h2 class="text-3xl font-bold">Paket Sewa Bot</h2>
           <p class="mt-2 text-slate-500">Investasi kecil untuk otomatisasi maksimal.</p>
         </div>
@@ -319,22 +403,22 @@
         <div class="grid md:grid-cols-3 gap-8 items-center">
           
           <!-- Paket 1 -->
-          <div class="glass rounded-3xl p-8 border border-slate-200 dark:border-slate-700 hover:scale-105 transition-transform">
+          <div class="reveal tilt-card glass rounded-3xl p-8 border border-slate-200 dark:border-slate-700 hover:border-primary-500 transition-colors duration-300">
             <h3 class="font-bold text-xl">Bot JASEB</h3>
-            <div class="my-4"><span class="text-4xl font-bold">Rp10K</span><span class="text-sm text-slate-500">/bulan</span></div>
+            <div class="my-4"><span class="text-4xl font-bold text-primary-600">Rp10K</span><span class="text-sm text-slate-500">/bulan</span></div>
             <p class="text-sm text-slate-500 mb-6">Auto-broadcast simple.</p>
             <ul class="space-y-3 text-sm mb-8">
               <li>✅ Broadcast andal</li>
               <li>✅ Server ON 24 Jam</li>
               <li>✅ Update rutin</li>
             </ul>
-            <a href="https://t.me/stuaart" class="block w-full py-3 rounded-xl border-2 border-slate-200 dark:border-slate-700 text-center font-bold hover:bg-slate-100 dark:hover:bg-slate-800 transition">Order</a>
+            <a href="https://t.me/stuaart" class="interactable block w-full py-3 rounded-xl border-2 border-slate-200 dark:border-slate-700 text-center font-bold hover:bg-slate-100 dark:hover:bg-slate-800 hover:border-primary-500 transition-all">Pesan Sekarang</a>
           </div>
 
           <!-- Paket 2 (Featured) -->
-          <div class="relative bg-gradient-to-b from-primary-600 to-secondary-700 rounded-3xl p-1 shadow-2xl transform md:-translate-y-4">
+          <div class="reveal reveal-delay-100 relative bg-gradient-to-b from-primary-600 to-secondary-700 rounded-3xl p-1 shadow-2xl transform hover:-translate-y-2 transition-transform duration-500 z-10">
             <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-              <span class="bg-yellow-400 text-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Best Value</span>
+              <span class="bg-yellow-400 text-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide shadow-lg animate-bounce">Best Value</span>
             </div>
             <div class="bg-white dark:bg-slate-900 rounded-[22px] p-8 h-full">
               <h3 class="font-bold text-xl text-primary-600">Bot CV Tahunan</h3>
@@ -346,21 +430,21 @@
                 <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Prioritas Support</li>
                 <li class="flex items-center gap-2"><span class="text-green-500">✓</span> Hemat 60%</li>
               </ul>
-              <a href="https://t.me/stuaart" class="block w-full py-3 rounded-xl bg-gradient-to-r from-primary-600 to-secondary-600 text-white text-center font-bold hover:shadow-lg transition">Ambil Promo</a>
+              <a href="https://t.me/stuaart" class="interactable block w-full py-3 rounded-xl bg-gradient-to-r from-primary-600 to-secondary-600 text-white text-center font-bold hover:shadow-lg hover:shadow-primary-500/40 transition-all hover:scale-105">Ambil Promo</a>
             </div>
           </div>
 
           <!-- Paket 3 -->
-          <div class="glass rounded-3xl p-8 border border-slate-200 dark:border-slate-700 hover:scale-105 transition-transform">
+          <div class="reveal reveal-delay-200 tilt-card glass rounded-3xl p-8 border border-slate-200 dark:border-slate-700 hover:border-secondary-500 transition-colors duration-300">
             <h3 class="font-bold text-xl">Bot CV Bulanan</h3>
-            <div class="my-4"><span class="text-4xl font-bold">Rp20K</span><span class="text-sm text-slate-500">/bulan</span></div>
+            <div class="my-4"><span class="text-4xl font-bold text-secondary-600">Rp20K</span><span class="text-sm text-slate-500">/bulan</span></div>
             <p class="text-sm text-slate-500 mb-6">Solusi jangka pendek.</p>
             <ul class="space-y-3 text-sm mb-8">
               <li>✅ Akses @panoramacvbot</li>
               <li>✅ Bot Cadangan (Backup)</li>
               <li>✅ Fast Response</li>
             </ul>
-            <a href="https://t.me/stuaart" class="block w-full py-3 rounded-xl border-2 border-slate-200 dark:border-slate-700 text-center font-bold hover:bg-slate-100 dark:hover:bg-slate-800 transition">Order</a>
+            <a href="https://t.me/stuaart" class="interactable block w-full py-3 rounded-xl border-2 border-slate-200 dark:border-slate-700 text-center font-bold hover:bg-slate-100 dark:hover:bg-slate-800 hover:border-secondary-500 transition-all">Pesan Sekarang</a>
           </div>
 
         </div>
@@ -370,19 +454,25 @@
     <!-- Testimoni Simple -->
     <section id="testimoni" class="py-16">
       <div class="max-w-6xl mx-auto px-4">
-        <h2 class="text-center text-2xl font-bold mb-10">Kata Mereka</h2>
+        <h2 class="reveal text-center text-2xl font-bold mb-10">Kata Mereka</h2>
         <div class="grid md:grid-cols-3 gap-6">
-          <div class="p-6 rounded-2xl bg-white/40 dark:bg-slate-800/40 backdrop-blur-sm border border-slate-100 dark:border-slate-700">
+          <div class="reveal tilt-card p-6 rounded-2xl bg-white/40 dark:bg-slate-800/40 backdrop-blur-sm border border-slate-100 dark:border-slate-700 hover:bg-white/60 dark:hover:bg-slate-800/60 transition-colors">
             <p class="italic text-slate-600 dark:text-slate-300">"Transaksi cepat, admin ramah, produk sesuai deskripsi."</p>
-            <div class="mt-4 font-bold text-sm text-primary-600">— @at_Diegoo</div>
+            <div class="mt-4 font-bold text-sm text-primary-600 flex items-center gap-2">
+               <span class="w-8 h-8 rounded-full bg-slate-300 flex items-center justify-center text-xs">AD</span> @at_Diegoo
+            </div>
           </div>
-          <div class="p-6 rounded-2xl bg-white/40 dark:bg-slate-800/40 backdrop-blur-sm border border-slate-100 dark:border-slate-700">
+          <div class="reveal tilt-card reveal-delay-100 p-6 rounded-2xl bg-white/40 dark:bg-slate-800/40 backdrop-blur-sm border border-slate-100 dark:border-slate-700 hover:bg-white/60 dark:hover:bg-slate-800/60 transition-colors">
             <p class="italic text-slate-600 dark:text-slate-300">"Amanah dan terbaik, adminnya asik diajak diskusi."</p>
-            <div class="mt-4 font-bold text-sm text-primary-600">— @masbonnz</div>
+            <div class="mt-4 font-bold text-sm text-primary-600 flex items-center gap-2">
+                <span class="w-8 h-8 rounded-full bg-slate-300 flex items-center justify-center text-xs">MB</span> @masbonnz
+             </div>
           </div>
-          <div class="p-6 rounded-2xl bg-white/40 dark:bg-slate-800/40 backdrop-blur-sm border border-slate-100 dark:border-slate-700">
+          <div class="reveal tilt-card reveal-delay-200 p-6 rounded-2xl bg-white/40 dark:bg-slate-800/40 backdrop-blur-sm border border-slate-100 dark:border-slate-700 hover:bg-white/60 dark:hover:bg-slate-800/60 transition-colors">
             <p class="italic text-slate-600 dark:text-slate-300">"Harga bersahabat, kualitas layanan ga main-main."</p>
-            <div class="mt-4 font-bold text-sm text-primary-600">— @fairuzw</div>
+            <div class="mt-4 font-bold text-sm text-primary-600 flex items-center gap-2">
+                <span class="w-8 h-8 rounded-full bg-slate-300 flex items-center justify-center text-xs">FW</span> @fairuzw
+             </div>
           </div>
         </div>
       </div>
@@ -392,13 +482,13 @@
     <footer class="border-t border-slate-200/60 dark:border-slate-800 bg-white/30 dark:bg-slate-900/30 backdrop-blur-md pt-10 pb-6">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div class="mb-6">
-          <span class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-secondary-600">PANORAMA STORE</span>
+          <span class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-secondary-600 hover:tracking-widest transition-all duration-300 cursor-pointer">PANORAMA STORE</span>
         </div>
         <div class="flex flex-wrap justify-center gap-6 mb-8 text-sm font-medium text-slate-600 dark:text-slate-400">
-          <a href="#" class="hover:text-primary-500">Home</a>
-          <a href="#layanan" class="hover:text-primary-500">Layanan</a>
-          <a href="#harga" class="hover:text-primary-500">Harga</a>
-          <a href="https://t.me/stuaart" target="_blank" class="hover:text-primary-500">Kontak Admin</a>
+          <a href="#" class="interactable hover:text-primary-500 transition-colors">Home</a>
+          <a href="#layanan" class="interactable hover:text-primary-500 transition-colors">Layanan</a>
+          <a href="#harga" class="interactable hover:text-primary-500 transition-colors">Harga</a>
+          <a href="https://t.me/stuaart" target="_blank" class="interactable hover:text-primary-500 transition-colors">Kontak Admin</a>
         </div>
         <p class="text-xs text-slate-400">
           © <span id="year"></span> Panorama Store. All rights reserved.<br>
@@ -406,49 +496,8 @@
         </p>
       </div>
     </footer>
-
-    <!-- Scripts -->
-    <script>
-      // Theme Logic
-      const html = document.documentElement;
-      const themeToggle = document.getElementById('themeToggle');
-      const themeToggleMobile = document.getElementById('themeToggleMobile');
-      const iconD = document.getElementById('themeIcon');
-      const iconM = document.getElementById('themeIconMobile');
-      
-      function updateTheme(isDark) {
-        if(isDark) {
-          html.classList.add('dark');
-          localStorage.setItem('theme', 'dark');
-          if(iconD) iconD.textContent = '☀️';
-          if(iconM) iconM.textContent = '☀️';
-        } else {
-          html.classList.remove('dark');
-          localStorage.setItem('theme', 'light');
-          if(iconD) iconD.textContent = '🌙';
-          if(iconM) iconM.textContent = '🌙';
-        }
-      }
-
-      const saved = localStorage.getItem('theme');
-      const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      updateTheme(saved === 'dark' || (!saved && systemDark));
-
-      [themeToggle, themeToggleMobile].forEach(btn => {
-        btn?.addEventListener('click', () => {
-          updateTheme(!html.classList.contains('dark'));
-        });
-      });
-
-      // Mobile Menu
-      const menuBtn = document.getElementById('menuBtn');
-      const mobileMenu = document.getElementById('mobileMenu');
-      menuBtn?.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-      });
-
-      // Year
-      document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
+    
+    <!-- Scripts at end of body for performance -->
+    <script src="script.js"></script>
   </body>
-                                                                               </html>
+</html>
