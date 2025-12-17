@@ -91,7 +91,6 @@
       }
 
       /* Scroll Reveal Animations */
-      /* PENTING: Opacity 0 membuat elemen hilang sampai JS jalan */
       .reveal {
         opacity: 0;
         transform: translateY(30px);
@@ -101,8 +100,6 @@
         opacity: 1;
         transform: translateY(0);
       }
-
-      /* Fallback jika JS error, konten tetap muncul */
       .no-js .reveal {
         opacity: 1 !important;
         transform: none !important;
@@ -110,11 +107,19 @@
 
       /* Active Nav Link */
       .nav-link.active {
-        color: #7c3aed; /* primary-600 */
+        color: #7c3aed;
         font-weight: 700;
       }
       .dark .nav-link.active {
-        color: #c4b5fd; /* primary-300 */
+        color: #c4b5fd;
+      }
+      
+      /* Pricing Card Transition */
+      .pricing-wrapper {
+        transition: all 0.3s ease-in-out;
+      }
+      .pricing-content {
+        transition: all 0.3s ease-in-out;
       }
     </style>
   </head>
@@ -161,7 +166,7 @@
                 <span id="themeIcon">🌙</span>
               </button>
 
-              <a href="https://t.me/stuaart" target="_blank" class="ml-2 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-6 py-2.5 font-semibold hover:shadow-lg hover:shadow-primary-500/20 hover:-translate-y-0.5 transition-all duration-300" data-i18n="nav_contact">
+              <a href="https://t.me/stuaart" target="_blank" class="ml-2 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-6 py-2.5 font-semibold hover:shadow-lg hover:shadow-primary-500/20 transition-all duration-300 transform hover:-translate-y-0.5">
                 Hubungi Admin
               </a>
             </nav>
@@ -194,7 +199,7 @@
     <!-- Hero Section -->
     <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 reveal">
-        <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 dark:bg-slate-800/50 border border-primary-200 dark:border-primary-900 text-primary-700 dark:text-primary-300 text-sm font-semibold mb-8 backdrop-blur-sm animate-float">
+        <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 dark:bg-slate-800/50 border border-primary-200 dark:border-primary-900 text-primary-700 dark:text-primary-300 text-sm font-bold backdrop-blur-sm mb-8 hover:scale-105 transition-transform cursor-default shadow-sm">
           <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
           <span data-i18n="hero_badge">Solusi Digital & Bisnis Online</span>
         </span>
@@ -209,16 +214,16 @@
         </p>
         
         <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <a href="#layanan" class="group w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-primary-600 to-secondary-600 text-white font-bold text-lg shadow-lg shadow-primary-500/30 hover:shadow-primary-500/50 hover:scale-105 transition-all duration-300 overflow-hidden relative">
+          <a href="#layanan" class="group w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-primary-600 to-secondary-600 text-white font-bold text-lg shadow-lg shadow-primary-500/30 hover:shadow-primary-500/50 transition-all duration-300 relative overflow-hidden">
              <span class="relative z-10" data-i18n="btn_explore">Eksplor Layanan</span>
              <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
           </a>
-          <a href="https://t.me/stuaart" target="_blank" class="w-full sm:w-auto px-8 py-4 rounded-full glass border border-slate-200 dark:border-slate-700 font-bold text-lg hover:bg-white/50 dark:hover:bg-slate-800/50 hover:scale-105 transition-all duration-300 text-slate-700 dark:text-slate-200" data-i18n="btn_consult">
+          <a href="https://t.me/stuaart" target="_blank" class="w-full sm:w-auto px-8 py-4 rounded-full glass border border-slate-200 dark:border-slate-700 font-bold text-lg hover:bg-white/50 dark:hover:bg-slate-800/50 transition-all duration-300 hover:scale-105" data-i18n="btn_consult">
             Konsultasi Gratis
           </a>
         </div>
 
-        <!-- Stats / Trust Indicators -->
+        <!-- Stats -->
         <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 opacity-80 reveal delay-200">
           <div class="hover:scale-110 transition-transform duration-300"><h3 class="text-3xl font-bold text-slate-900 dark:text-white">24/7</h3><p class="text-sm" data-i18n="stat_bot">Layanan Bot</p></div>
           <div class="hover:scale-110 transition-transform duration-300"><h3 class="text-3xl font-bold text-slate-900 dark:text-white">100+</h3><p class="text-sm" data-i18n="stat_cust">Pelanggan Puas</p></div>
@@ -228,17 +233,16 @@
       </div>
     </section>
 
-    <!-- SPECIAL OFFER SECTION (UPDATED 2025) -->
+    <!-- SPECIAL OFFER SECTION -->
     <section id="hot-offer" class="py-10">
       <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
         <div class="relative rounded-3xl overflow-hidden shadow-2xl shadow-secondary-500/20 group hover:shadow-secondary-500/40 transition-shadow duration-500">
-          <!-- Background Gradient -->
           <div class="absolute inset-0 bg-gradient-to-r from-violet-600 via-fuchsia-600 to-orange-500 opacity-90 transition-opacity group-hover:opacity-100"></div>
           <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-20 animate-[pulse_4s_ease-in-out_infinite]"></div>
           
           <div class="relative z-10 p-8 md:p-12 text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-8">
             <div class="space-y-4">
-              <div class="inline-block px-3 py-1 bg-white/20 rounded-lg text-xs font-bold text-white uppercase tracking-wider backdrop-blur-sm border border-white/30 transform group-hover:scale-105 transition-transform">
+              <div class="inline-block px-3 py-1 bg-white/20 rounded-lg text-xs font-bold text-white uppercase tracking-wider backdrop-blur-sm border border-white/30 transform group-hover:scale-105 transition-transform cursor-default" data-i18n="offer_badge">
                 Peluang Cuan 2025 💸
               </div>
               <h2 class="text-3xl md:text-4xl font-bold text-white" data-i18n="offer_title">
@@ -274,57 +278,64 @@
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <!-- Card 1 -->
+          <!-- Web Dev -->
+          <div class="glass-card rounded-2xl p-6 reveal group hover:border-cyan-400/50" data-tilt>
+            <div class="w-12 h-12 rounded-lg bg-cyan-100 dark:bg-cyan-900/30 text-cyan-600 dark:text-cyan-300 flex items-center justify-center text-2xl mb-4 shadow-inner group-hover:scale-110 transition-transform duration-300">💻</div>
+            <h3 class="font-bold text-xl mb-2 group-hover:text-cyan-600 transition-colors">Jasa Pembuatan Website</h3>
+            <p class="text-sm text-slate-500 dark:text-slate-400">Landing page, Company Profile, atau Toko Online profesional. Desain responsif, modern, dan SEO friendly.</p>
+          </div>
+
+          <!-- Bot Dev -->
+          <div class="glass-card rounded-2xl p-6 reveal delay-100 group hover:border-emerald-400/50" data-tilt>
+            <div class="w-12 h-12 rounded-lg bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-300 flex items-center justify-center text-2xl mb-4 shadow-inner group-hover:scale-110 transition-transform duration-300">🤖</div>
+            <h3 class="font-bold text-xl mb-2 group-hover:text-emerald-600 transition-colors">Jasa Pembuatan Bot</h3>
+            <p class="text-sm text-slate-500 dark:text-slate-400">Custom Bot Telegram/WhatsApp. Fitur broadcast, auto-reply, integrasi API, dan manajemen grup.</p>
+          </div>
+
+          <!-- Existing Cards -->
           <div class="glass-card rounded-2xl p-6 reveal group hover:border-primary-400/50" data-tilt>
-            <div class="w-12 h-12 rounded-lg bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-300 flex items-center justify-center text-2xl mb-4 shadow-inner group-hover:scale-110 transition-transform">🤖</div>
+            <div class="w-12 h-12 rounded-lg bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-300 flex items-center justify-center text-2xl mb-4 shadow-inner group-hover:scale-110 transition-transform duration-300">📢</div>
             <h3 class="font-bold text-xl mb-2 group-hover:text-primary-600 transition-colors">Bot JASEB</h3>
-            <p class="text-sm text-slate-500 dark:text-slate-400" data-i18n="desc_jaseb">Bot auto broadcast sederhana dan modern. Kirim pesan massal dengan mudah.</p>
+            <p class="text-sm text-slate-500 dark:text-slate-400" data-i18n="desc_jaseb">Bot auto broadcast sederhana dan modern.</p>
           </div>
 
-          <!-- Card 2 -->
           <div class="glass-card rounded-2xl p-6 reveal delay-100 group hover:border-secondary-400/50" data-tilt>
-            <div class="w-12 h-12 rounded-lg bg-secondary-100 dark:bg-secondary-900/30 text-secondary-600 dark:text-secondary-300 flex items-center justify-center text-2xl mb-4 shadow-inner group-hover:scale-110 transition-transform">📂</div>
+            <div class="w-12 h-12 rounded-lg bg-secondary-100 dark:bg-secondary-900/30 text-secondary-600 dark:text-secondary-300 flex items-center justify-center text-2xl mb-4 shadow-inner group-hover:scale-110 transition-transform duration-300">📇</div>
             <h3 class="font-bold text-xl mb-2 group-hover:text-secondary-600 transition-colors">Bot Convert VCF</h3>
-            <p class="text-sm text-slate-500 dark:text-slate-400" data-i18n="desc_vcf">Konversi format all file to VCF dengan UI simpel & modern. Rapikan kontakmu.</p>
+            <p class="text-sm text-slate-500 dark:text-slate-400" data-i18n="desc_vcf">Konversi format all file to VCF dengan UI simpel.</p>
           </div>
 
-          <!-- Card 3 -->
           <div class="glass-card rounded-2xl p-6 reveal delay-200 group hover:border-blue-400/50" data-tilt>
-            <div class="w-12 h-12 rounded-lg bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 flex items-center justify-center text-2xl mb-4 shadow-inner group-hover:scale-110 transition-transform">👥</div>
+            <div class="w-12 h-12 rounded-lg bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 flex items-center justify-center text-2xl mb-4 shadow-inner group-hover:scale-110 transition-transform duration-300">👥</div>
             <h3 class="font-bold text-xl mb-2 group-hover:text-blue-600 transition-colors">Member Telegram</h3>
-            <p class="text-sm text-slate-500 dark:text-slate-400" data-i18n="desc_member">Suntik member Group/Channel Telegram untuk meningkatkan kredibilitas.</p>
+            <p class="text-sm text-slate-500 dark:text-slate-400" data-i18n="desc_member">Suntik member Group/Channel Telegram.</p>
           </div>
 
-          <!-- Card 4 -->
           <div class="glass-card rounded-2xl p-6 reveal group hover:border-pink-400/50" data-tilt>
-            <div class="w-12 h-12 rounded-lg bg-pink-100 dark:bg-pink-900/30 text-pink-600 dark:text-pink-300 flex items-center justify-center text-2xl mb-4 shadow-inner group-hover:scale-110 transition-transform">📸</div>
+            <div class="w-12 h-12 rounded-lg bg-pink-100 dark:bg-pink-900/30 text-pink-600 dark:text-pink-300 flex items-center justify-center text-2xl mb-4 shadow-inner group-hover:scale-110 transition-transform duration-300">🔥</div>
             <h3 class="font-bold text-xl mb-2 group-hover:text-pink-600 transition-colors">Instagram Booster</h3>
-            <p class="text-sm text-slate-500 dark:text-slate-400" data-i18n="desc_ig">Followers & Like Instagram. Tingkatkan engagement akunmu secara instan.</p>
+            <p class="text-sm text-slate-500 dark:text-slate-400" data-i18n="desc_ig">Followers & Like Instagram instant.</p>
           </div>
 
-          <!-- Card 5 -->
           <div class="glass-card rounded-2xl p-6 reveal delay-100 group hover:border-green-400/50" data-tilt>
-            <div class="w-12 h-12 rounded-lg bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-300 flex items-center justify-center text-2xl mb-4 shadow-inner group-hover:scale-110 transition-transform">📞</div>
-            <h3 class="font-bold text-xl mb-2 group-hover:text-green-600 transition-colors" data-i18n="title_nokos">Nomor Virtual (Nokos)</h3>
-            <p class="text-sm text-slate-500 dark:text-slate-400" data-i18n="desc_nokos">Nomor siap pakai untuk WA/Telegram. Tersedia opsi garansi penuh.</p>
+            <div class="w-12 h-12 rounded-lg bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-300 flex items-center justify-center text-2xl mb-4 shadow-inner group-hover:scale-110 transition-transform duration-300">📱</div>
+            <h3 class="font-bold text-xl mb-2 group-hover:text-green-600 transition-colors" data-i18n="title_nokos">Nomor Virtual</h3>
+            <p class="text-sm text-slate-500 dark:text-slate-400" data-i18n="desc_nokos">Nomor siap pakai untuk WA/Telegram.</p>
           </div>
 
-          <!-- Card 6 -->
           <div class="glass-card rounded-2xl p-6 reveal delay-200 group hover:border-indigo-400/50" data-tilt>
-            <div class="w-12 h-12 rounded-lg bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-300 flex items-center justify-center text-2xl mb-4 shadow-inner group-hover:scale-110 transition-transform">🌟</div>
+            <div class="w-12 h-12 rounded-lg bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-300 flex items-center justify-center text-2xl mb-4 shadow-inner group-hover:scale-110 transition-transform duration-300">⭐</div>
             <h3 class="font-bold text-xl mb-2 group-hover:text-indigo-600 transition-colors">Telegram Premium</h3>
-            <p class="text-sm text-slate-500 dark:text-slate-400" data-i18n="desc_prem">Aktivasi fitur premium Telegram tanpa ribet. Harga bersaing.</p>
+            <p class="text-sm text-slate-500 dark:text-slate-400" data-i18n="desc_prem">Aktivasi fitur premium Telegram.</p>
+          </div>
+
+          <div class="glass-card rounded-2xl p-6 reveal group hover:border-red-400/50" data-tilt>
+            <div class="w-12 h-12 rounded-lg bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-300 flex items-center justify-center text-2xl mb-4 shadow-inner group-hover:scale-110 transition-transform duration-300">🎵</div>
+            <h3 class="font-bold text-xl mb-2 group-hover:text-red-600 transition-colors">TikTok Services</h3>
+            <p class="text-sm text-slate-500 dark:text-slate-400" data-i18n="desc_tiktok">Followers & Like TikTok FYP.</p>
           </div>
           
-           <!-- Card 7 -->
-           <div class="glass-card rounded-2xl p-6 reveal group hover:border-red-400/50" data-tilt>
-            <div class="w-12 h-12 rounded-lg bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-300 flex items-center justify-center text-2xl mb-4 shadow-inner group-hover:scale-110 transition-transform">🎵</div>
-            <h3 class="font-bold text-xl mb-2 group-hover:text-red-600 transition-colors">TikTok Services</h3>
-            <p class="text-sm text-slate-500 dark:text-slate-400" data-i18n="desc_tiktok">Followers & Like TikTok. Dorong kontenmu masuk FYP.</p>
-          </div>
-
-          <!-- Call to Action Card -->
-          <div class="glass-card rounded-2xl p-6 border border-white/40 dark:border-slate-700 flex flex-col justify-center items-center text-center bg-gradient-to-br from-primary-50 to-secondary-50 dark:from-slate-800 dark:to-slate-900 group hover:shadow-lg transition-all duration-300" data-tilt>
+          <div class="glass-card rounded-2xl p-6 border border-white/40 dark:border-slate-700 flex flex-col justify-center items-center text-center bg-gradient-to-br from-primary-50 to-secondary-50 dark:from-slate-800 dark:to-slate-900 transition-all duration-300 hover:shadow-lg" data-tilt>
             <h3 class="font-bold text-lg mb-2" data-i18n="other_services">Layanan Lainnya?</h3>
             <a href="https://t.me/stuaart" class="text-primary-600 font-semibold hover:underline flex items-center gap-1 group">
               <span data-i18n="chat_admin">Chat Admin @stuaart</span>
@@ -335,7 +346,7 @@
       </div>
     </section>
 
-    <!-- Harga Bot -->
+    <!-- Harga Bot (Fixed Structure) -->
     <section id="harga" class="py-20 relative">
       <div class="absolute inset-0 bg-slate-100/50 dark:bg-slate-900/50 skew-y-3 transform origin-bottom-right z-[-1]"></div>
       
@@ -345,77 +356,90 @@
           <p class="mt-2 text-slate-500" data-i18n="price_sub">Investasi kecil untuk otomatisasi maksimal.</p>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-8 items-center">
+        <div class="grid md:grid-cols-3 gap-8 items-center" id="pricing-grid">
           
-          <!-- Paket 1 -->
-          <div class="glass rounded-3xl p-8 border border-slate-200 dark:border-slate-700 hover:scale-105 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 reveal delay-0">
-            <h3 class="font-bold text-xl">Bot JASEB</h3>
-            <div class="my-4"><span class="text-4xl font-bold">Rp10K</span><span class="text-sm text-slate-500" data-i18n="per_month">/bulan</span></div>
-            <p class="text-sm text-slate-500 mb-6" data-i18n="pkg1_desc">Auto-broadcast simple.</p>
-            <ul class="space-y-3 text-sm mb-8">
-              <li class="flex items-center gap-2"><span class="text-green-500 font-bold text-lg">✓</span> <span data-i18n="pkg1_f1">Broadcast andal</span></li>
-              <li class="flex items-center gap-2"><span class="text-green-500 font-bold text-lg">✓</span> <span data-i18n="pkg1_f2">Server ON 24 Jam</span></li>
-              <li class="flex items-center gap-2"><span class="text-green-500 font-bold text-lg">✓</span> <span data-i18n="pkg1_f3">Update rutin</span></li>
-            </ul>
-            <a href="https://t.me/stuaart" class="block w-full py-3 rounded-xl border-2 border-slate-200 dark:border-slate-700 text-center font-bold hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
-              <span data-i18n="btn_order">Order Sekarang</span>
-            </a>
+          <!-- Paket 1: JASEB (Inactive Start) -->
+          <!-- Note: All cards now have "pricing-wrapper p-1 rounded-3xl" structure -->
+          <div id="pkg-jaseb" onclick="selectPricing('pkg-jaseb')" class="pricing-wrapper cursor-pointer relative rounded-3xl p-1 glass border border-slate-200 dark:border-slate-700 hover:scale-105 hover:-translate-y-2 hover:shadow-xl reveal delay-0">
+             <!-- Badge (Hidden by default) -->
+             <div class="badge-container absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 hidden z-20">
+               <span class="bg-yellow-400 text-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide animate-bounce">Pilihan Terbaik</span>
+             </div>
+             <!-- Inner Content -->
+             <div class="pricing-content h-full rounded-[22px] p-8 bg-transparent">
+                <h3 class="font-bold text-xl title-text">Bot JASEB</h3>
+                <div class="my-4"><span class="text-4xl font-bold">Rp10K</span><span class="text-sm text-slate-500" data-i18n="per_month">/bulan</span></div>
+                <p class="text-sm text-slate-500 mb-6" data-i18n="pkg1_desc">Auto-broadcast simple.</p>
+                <ul class="space-y-3 text-sm mb-8 feature-list">
+                    <li class="flex items-center gap-2"><span class="text-green-500 font-bold text-lg">✓</span> <span data-i18n="pkg1_f1">Broadcast andal</span></li>
+                    <li class="flex items-center gap-2"><span class="text-green-500 font-bold text-lg">✓</span> <span data-i18n="pkg1_f2">Server ON 24 Jam</span></li>
+                    <li class="flex items-center gap-2"><span class="text-green-500 font-bold text-lg">✓</span> <span data-i18n="pkg1_f3">Update rutin</span></li>
+                </ul>
+                <a href="https://t.me/stuaart" class="block w-full py-3 rounded-xl border-2 border-slate-200 dark:border-slate-700 text-center font-bold hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors btn-action">
+                    <span data-i18n="btn_order">Order Sekarang</span>
+                </a>
+             </div>
           </div>
 
-          <!-- Paket 2 (Featured) -->
-          <div class="relative bg-gradient-to-b from-primary-600 to-secondary-700 rounded-3xl p-1 shadow-2xl transform md:-translate-y-4 hover:scale-[1.05] hover:-translate-y-6 transition-transform duration-300 reveal delay-100">
-            <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          <!-- Paket 2: CV Tahunan (Active Start) -->
+          <div id="pkg-annual" onclick="selectPricing('pkg-annual')" class="pricing-wrapper cursor-pointer relative rounded-3xl p-1 bg-gradient-to-b from-primary-600 to-secondary-700 shadow-2xl transform md:-translate-y-4 hover:scale-[1.05] hover:-translate-y-6 z-10 reveal delay-100">
+            <div class="badge-container absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
               <span class="bg-yellow-400 text-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide animate-bounce">Best Value</span>
             </div>
-            <div class="bg-white dark:bg-slate-900 rounded-[22px] p-8 h-full">
-              <h3 class="font-bold text-xl text-primary-600">Bot CV Tahunan</h3>
+            <div class="pricing-content h-full rounded-[22px] p-8 bg-white dark:bg-slate-900">
+              <h3 class="font-bold text-xl title-text text-primary-600">Bot CV Tahunan</h3>
               <div class="my-4"><span class="text-4xl font-bold">Rp99K</span><span class="text-sm text-slate-500" data-i18n="per_year">/tahun</span></div>
               <p class="text-sm text-slate-500 mb-6" data-i18n="pkg2_desc">Convert file tanpa batas.</p>
-              <ul class="space-y-3 text-sm mb-8 font-medium">
+              <ul class="space-y-3 text-sm mb-8 feature-list font-medium">
                 <li class="flex items-center gap-2"><span class="text-green-500 font-bold text-lg">✓</span> <span data-i18n="pkg2_f1">Unlimited Convert</span></li>
                 <li class="flex items-center gap-2"><span class="text-green-500 font-bold text-lg">✓</span> <span data-i18n="pkg2_f2">Garansi Gangguan</span></li>
                 <li class="flex items-center gap-2"><span class="text-green-500 font-bold text-lg">✓</span> <span data-i18n="pkg2_f3">Prioritas Support</span></li>
                 <li class="flex items-center gap-2"><span class="text-green-500 font-bold text-lg">✓</span> <span data-i18n="pkg2_f4">Hemat 60%</span></li>
               </ul>
-              <a href="https://t.me/stuaart" class="block w-full py-3 rounded-xl bg-gradient-to-r from-primary-600 to-secondary-600 text-white text-center font-bold hover:shadow-lg transition transform active:scale-95">
+              <a href="https://t.me/stuaart" class="block w-full py-3 rounded-xl bg-gradient-to-r from-primary-600 to-secondary-600 text-white text-center font-bold hover:shadow-lg transition transform hover:-translate-y-0.5 btn-action">
                 <span data-i18n="btn_take">Ambil Promo</span>
               </a>
             </div>
           </div>
 
-          <!-- Paket 3 -->
-          <div class="glass rounded-3xl p-8 border border-slate-200 dark:border-slate-700 hover:scale-105 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 reveal delay-200">
-            <h3 class="font-bold text-xl">Bot CV Bulanan</h3>
-            <div class="my-4"><span class="text-4xl font-bold">Rp20K</span><span class="text-sm text-slate-500" data-i18n="per_month">/bulan</span></div>
-            <p class="text-sm text-slate-500 mb-6" data-i18n="pkg3_desc">Solusi jangka pendek.</p>
-            <ul class="space-y-3 text-sm mb-8">
-              <li class="flex items-center gap-2"><span class="text-green-500 font-bold text-lg">✓</span> <span>Akses @panoramacvbot</span></li>
-              <li class="flex items-center gap-2"><span class="text-green-500 font-bold text-lg">✓</span> <span data-i18n="pkg3_f2">Bot Cadangan (Backup)</span></li>
-              <li class="flex items-center gap-2"><span class="text-green-500 font-bold text-lg">✓</span> <span data-i18n="pkg3_f3">Fast Response</span></li>
-            </ul>
-            <a href="https://t.me/stuaart" class="block w-full py-3 rounded-xl border-2 border-slate-200 dark:border-slate-700 text-center font-bold hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
-              <span data-i18n="btn_order">Order Sekarang</span>
-            </a>
+          <!-- Paket 3: CV Bulanan (Inactive Start) -->
+          <div id="pkg-monthly" onclick="selectPricing('pkg-monthly')" class="pricing-wrapper cursor-pointer relative rounded-3xl p-1 glass border border-slate-200 dark:border-slate-700 hover:scale-105 hover:-translate-y-2 hover:shadow-xl reveal delay-200">
+             <div class="badge-container absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 hidden z-20">
+               <span class="bg-yellow-400 text-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide animate-bounce">Pilihan Terbaik</span>
+             </div>
+             <div class="pricing-content h-full rounded-[22px] p-8 bg-transparent">
+                <h3 class="font-bold text-xl title-text">Bot CV Bulanan</h3>
+                <div class="my-4"><span class="text-4xl font-bold">Rp20K</span><span class="text-sm text-slate-500" data-i18n="per_month">/bulan</span></div>
+                <p class="text-sm text-slate-500 mb-6" data-i18n="pkg3_desc">Solusi jangka pendek.</p>
+                <ul class="space-y-3 text-sm mb-8 feature-list">
+                    <li class="flex items-center gap-2"><span class="text-green-500 font-bold text-lg">✓</span> <span>Akses @panoramacvbot</span></li>
+                    <li class="flex items-center gap-2"><span class="text-green-500 font-bold text-lg">✓</span> <span data-i18n="pkg3_f2">Bot Cadangan (Backup)</span></li>
+                    <li class="flex items-center gap-2"><span class="text-green-500 font-bold text-lg">✓</span> <span data-i18n="pkg3_f3">Fast Response</span></li>
+                </ul>
+                <a href="https://t.me/stuaart" class="block w-full py-3 rounded-xl border-2 border-slate-200 dark:border-slate-700 text-center font-bold hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors btn-action">
+                    <span data-i18n="btn_order">Order Sekarang</span>
+                </a>
+             </div>
           </div>
 
         </div>
       </div>
     </section>
 
-    <!-- Testimoni Simple -->
+    <!-- Testimoni & Footer ... -->
     <section id="testimoni" class="py-16">
       <div class="max-w-6xl mx-auto px-4">
         <h2 class="text-center text-2xl font-bold mb-10 reveal" data-i18n="testi_title">Kata Mereka</h2>
         <div class="grid md:grid-cols-3 gap-6">
-          <div class="p-6 rounded-2xl bg-white/40 dark:bg-slate-800/40 backdrop-blur-sm border border-slate-100 dark:border-slate-700 reveal hover:bg-white/60 dark:hover:bg-slate-800/60 transition-all hover:-translate-y-2 shadow-sm">
+          <div class="p-6 rounded-2xl bg-white/40 dark:bg-slate-800/40 backdrop-blur-sm border border-slate-100 dark:border-slate-700 reveal hover:bg-white/60 dark:hover:bg-slate-800/60 transition-all duration-300">
             <p class="italic text-slate-600 dark:text-slate-300">"Transaksi cepat, admin ramah, produk sesuai deskripsi."</p>
             <div class="mt-4 font-bold text-sm text-primary-600">— @at_Diegoo</div>
           </div>
-          <div class="p-6 rounded-2xl bg-white/40 dark:bg-slate-800/40 backdrop-blur-sm border border-slate-100 dark:border-slate-700 reveal delay-100 hover:bg-white/60 dark:hover:bg-slate-800/60 transition-all hover:-translate-y-2 shadow-sm">
+          <div class="p-6 rounded-2xl bg-white/40 dark:bg-slate-800/40 backdrop-blur-sm border border-slate-100 dark:border-slate-700 reveal delay-100 hover:bg-white/60 dark:hover:bg-slate-800/60 transition-all duration-300">
             <p class="italic text-slate-600 dark:text-slate-300">"Amanah dan terbaik, adminnya asik diajak diskusi."</p>
             <div class="mt-4 font-bold text-sm text-primary-600">— @masbonnz</div>
           </div>
-          <div class="p-6 rounded-2xl bg-white/40 dark:bg-slate-800/40 backdrop-blur-sm border border-slate-100 dark:border-slate-700 reveal delay-200 hover:bg-white/60 dark:hover:bg-slate-800/60 transition-all hover:-translate-y-2 shadow-sm">
+          <div class="p-6 rounded-2xl bg-white/40 dark:bg-slate-800/40 backdrop-blur-sm border border-slate-100 dark:border-slate-700 reveal delay-200 hover:bg-white/60 dark:hover:bg-slate-800/60 transition-all duration-300">
             <p class="italic text-slate-600 dark:text-slate-300">"Harga bersahabat, kualitas layanan ga main-main."</p>
             <div class="mt-4 font-bold text-sm text-primary-600">— @fairuzw</div>
           </div>
@@ -423,7 +447,6 @@
       </div>
     </section>
 
-    <!-- Footer -->
     <footer class="border-t border-slate-200/60 dark:border-slate-800 bg-white/30 dark:bg-slate-900/30 backdrop-blur-md pt-10 pb-6">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div class="mb-6">
@@ -442,334 +465,240 @@
       </div>
     </footer>
 
-    <!-- Scroll to Top Button -->
-    <button id="scrollToTop" class="fixed bottom-6 right-6 p-3 rounded-full bg-primary-600 text-white shadow-lg translate-y-20 opacity-0 transition-all duration-300 hover:bg-primary-700 hover:scale-110 z-50">
-      ↑
-    </button>
+    <button id="scrollToTop" class="fixed bottom-6 right-6 p-3 rounded-full bg-primary-600 text-white shadow-lg translate-y-20 opacity-0 transition-all duration-300 hover:bg-primary-700 hover:scale-110 z-50">↑</button>
 
-    <!-- JavaScript Embedded Directly to Prevent Errors -->
+    <!-- Script -->
     <script>
-      // --- Dictionary Bahasa ---
+      // ... (Language, Theme, Animation logic remains the same) ...
+      // --- INSERTED HERE FOR CONTEXT, BUT USE EXISTING LOGIC FOR LANG/THEME ---
+      
       const translations = {
         id: {
-          nav_services: "Layanan",
-          nav_offer: "Hot Offer 🔥",
-          nav_price: "Harga Bot",
-          nav_testi: "Testimoni",
-          nav_contact: "Hubungi Admin",
-          hero_badge: "Solusi Digital & Bisnis Online",
-          hero_title_1: "Optimasi Bisnis dengan",
+          nav_services: "Layanan", nav_offer: "Hot Offer 🔥", nav_price: "Harga Bot", nav_testi: "Testimoni", nav_contact: "Hubungi Admin",
+          hero_badge: "Solusi Digital & Bisnis Online", hero_title_1: "Optimasi Bisnis dengan",
           hero_desc: "Platform serba ada untuk kebutuhan SMM, Bot Telegram canggih, dan peluang cuan dari aset digitalmu. Operasional 100% Online.",
-          btn_explore: "Eksplor Layanan",
-          btn_consult: "Konsultasi Gratis",
-          stat_bot: "Layanan Bot",
-          stat_cust: "Pelanggan Puas",
-          stat_resp: "Respon Admin",
-          stat_safe: "Transaksi Terjamin",
-          offer_badge: "Peluang Cuan 2025 💸",
-          offer_title: "Punya Akun Instagram Nganggur?",
+          btn_explore: "Eksplor Layanan", btn_consult: "Konsultasi Gratis",
+          stat_bot: "Layanan Bot", stat_cust: "Pelanggan Puas", stat_resp: "Respon Admin", stat_safe: "Transaksi Terjamin",
+          offer_badge: "Peluang Cuan 2025 💸", offer_title: "Punya Akun Instagram Nganggur?",
           offer_desc: "Akun Instagram tahun 2024 ke bawah bisa dimonetisasi! Bukan scam, bukan ilegal. Murni untuk keperluan promosi (buzzer).",
-          offer_li1: "Aman & Legal",
-          offer_li2: "Khusus akun tua/lama lebih bernilai",
-          offer_li3: "Panduan lengkap tersedia",
-          offer_btn_main: "Tanya Harga & Tutor",
-          offer_btn_sub: "ke @stuaart",
-          service_title: "Layanan Unggulan",
-          service_sub: "Pilih layanan digital yang sesuai dengan kebutuhan bisnismu.",
-          desc_jaseb: "Bot auto broadcast sederhana dan modern. Kirim pesan massal dengan mudah.",
-          desc_vcf: "Konversi format all file to VCF dengan UI simpel & modern. Rapikan kontakmu.",
-          desc_member: "Suntik member Group/Channel Telegram untuk meningkatkan kredibilitas.",
-          desc_ig: "Followers & Like Instagram. Tingkatkan engagement akunmu secara instan.",
-          title_nokos: "Nomor Virtual (Nokos)",
-          desc_nokos: "Nomor siap pakai untuk WA/Telegram. Tersedia opsi garansi penuh.",
-          desc_prem: "Aktivasi fitur premium Telegram tanpa ribet. Harga bersaing.",
-          desc_tiktok: "TikTok Followers & Like. Dorong kontenmu masuk FYP.",
-          other_services: "Layanan Lainnya?",
-          chat_admin: "Chat Admin @stuaart",
-          price_title: "Paket Sewa Bot",
-          price_sub: "Investasi kecil untuk otomatisasi maksimal.",
-          per_month: "/bulan",
-          per_year: "/tahun",
-          pkg1_desc: "Auto-broadcast simple.",
-          pkg1_f1: "Broadcast andal",
-          pkg1_f2: "Server ON 24 Jam",
-          pkg1_f3: "Update rutin",
-          btn_order: "Order Sekarang",
-          pkg2_desc: "Convert file tanpa batas.",
-          pkg2_f1: "Unlimited Convert",
-          pkg2_f2: "Garansi Gangguan",
-          pkg2_f3: "Prioritas Support",
-          pkg2_f4: "Hemat 60%",
-          btn_take: "Ambil Promo",
-          pkg3_desc: "Solusi jangka pendek.",
-          pkg3_f2: "Bot Cadangan (Backup)",
-          pkg3_f3: "Fast Response",
+          offer_li1: "Aman & Legal", offer_li2: "Khusus akun tua/lama lebih bernilai", offer_li3: "Panduan lengkap tersedia",
+          offer_btn_main: "Tanya Harga & Tutor", offer_btn_sub: "ke @stuaart",
+          service_title: "Layanan Unggulan", service_sub: "Pilih layanan digital yang sesuai dengan kebutuhan bisnismu.",
+          desc_jaseb: "Bot auto broadcast sederhana dan modern.", desc_vcf: "Konversi format all file to VCF dengan UI simpel.",
+          desc_member: "Suntik member Group/Channel Telegram.", desc_ig: "Followers & Like Instagram instant.",
+          title_nokos: "Nomor Virtual", desc_nokos: "Nomor siap pakai untuk WA/Telegram.",
+          desc_prem: "Aktivasi fitur premium Telegram.", desc_tiktok: "TikTok Followers & Like.",
+          other_services: "Layanan Lainnya?", chat_admin: "Chat Admin @stuaart",
+          price_title: "Paket Sewa Bot", price_sub: "Investasi kecil untuk otomatisasi maksimal.",
+          per_month: "/bulan", per_year: "/tahun",
+          pkg1_desc: "Auto-broadcast simple.", pkg1_f1: "Broadcast andal", pkg1_f2: "Server ON 24 Jam", pkg1_f3: "Update rutin", btn_order: "Order Sekarang",
+          pkg2_desc: "Convert file tanpa batas.", pkg2_f1: "Unlimited Convert", pkg2_f2: "Garansi Gangguan", pkg2_f3: "Prioritas Support", pkg2_f4: "Hemat 60%", btn_take: "Ambil Promo",
+          pkg3_desc: "Solusi jangka pendek.", pkg3_f2: "Bot Cadangan (Backup)", pkg3_f3: "Fast Response",
           testi_title: "Kata Mereka"
         },
         en: {
-          nav_services: "Services",
-          nav_offer: "Hot Offer 🔥",
-          nav_price: "Pricing",
-          nav_testi: "Testimonials",
-          nav_contact: "Contact Admin",
-          hero_badge: "Digital Solutions & Online Business",
-          hero_title_1: "Optimize Business with",
+          nav_services: "Services", nav_offer: "Hot Offer 🔥", nav_price: "Pricing", nav_testi: "Testimonials", nav_contact: "Contact Admin",
+          hero_badge: "Digital Solutions & Online Business", hero_title_1: "Optimize Business with",
           hero_desc: "All-in-one platform for SMM needs, advanced Telegram Bots, and monetization opportunities for your digital assets. 100% Online Operations.",
-          btn_explore: "Explore Services",
-          btn_consult: "Free Consultation",
-          stat_bot: "Bot Services",
-          stat_cust: "Happy Clients",
-          stat_resp: "Admin Response",
-          stat_safe: "Secure Transactions",
-          offer_badge: "Money Opportunity 2025 💸",
-          offer_title: "Have an Idle Instagram Account?",
+          btn_explore: "Explore Services", btn_consult: "Free Consultation",
+          stat_bot: "Bot Services", stat_cust: "Happy Clients", stat_resp: "Admin Response", stat_safe: "Secure Transactions",
+          offer_badge: "Money Opportunity 2025 💸", offer_title: "Have an Idle Instagram Account?",
           offer_desc: "Instagram accounts from 2024 and older can be monetized! Not a scam, not illegal. Purely for promotional purposes (buzzer).",
-          offer_li1: "Safe & Legal",
-          offer_li2: "Old accounts are more valuable",
-          offer_li3: "Full guide available",
-          offer_btn_main: "Ask Price & Tutorial",
-          offer_btn_sub: "to @stuaart",
-          service_title: "Featured Services",
-          service_sub: "Choose digital services that suit your business needs.",
-          desc_jaseb: "Simple and modern auto broadcast bot. Send mass messages easily.",
-          desc_vcf: "Convert all files to VCF format with simple & modern UI. Organize your contacts.",
-          desc_member: "Inject Telegram Group/Channel members to increase credibility.",
-          desc_ig: "Instagram Followers & Likes. Instantly boost your account engagement.",
-          title_nokos: "Virtual Numbers (Nokos)",
-          desc_nokos: "Ready-to-use numbers for WA/Telegram. Full warranty options available.",
-          desc_prem: "Activate Telegram Premium features without hassle. Competitive prices.",
-          desc_tiktok: "TikTok Followers & Likes. Push your content to FYP.",
-          other_services: "Other Services?",
-          chat_admin: "Chat Admin @stuaart",
-          price_title: "Bot Rental Packages",
-          price_sub: "Small investment for maximum automation.",
-          per_month: "/month",
-          per_year: "/year",
-          pkg1_desc: "Simple auto-broadcast.",
-          pkg1_f1: "Reliable Broadcast",
-          pkg1_f2: "24 Hours Server ON",
-          pkg1_f3: "Routine Updates",
-          btn_order: "Order Now",
-          pkg2_desc: "Unlimited file conversion.",
-          pkg2_f1: "Unlimited Convert",
-          pkg2_f2: "Downtime Warranty",
-          pkg2_f3: "Priority Support",
-          pkg2_f4: "Save 60%",
-          btn_take: "Grab Promo",
-          pkg3_desc: "Short term solution.",
-          pkg3_f2: "Backup Bot",
-          pkg3_f3: "Fast Response",
+          offer_li1: "Safe & Legal", offer_li2: "Old accounts are more valuable", offer_li3: "Full guide available",
+          offer_btn_main: "Ask Price & Tutorial", offer_btn_sub: "to @stuaart",
+          service_title: "Featured Services", service_sub: "Choose digital services that suit your business needs.",
+          desc_jaseb: "Simple and modern auto broadcast bot.", desc_vcf: "Convert all files to VCF format with simple UI.",
+          desc_member: "Inject Telegram Group/Channel members.", desc_ig: "Instagram Followers & Likes.",
+          title_nokos: "Virtual Numbers", desc_nokos: "Ready-to-use numbers for WA/Telegram.",
+          desc_prem: "Activate Telegram Premium features.", desc_tiktok: "TikTok Followers & Likes.",
+          other_services: "Other Services?", chat_admin: "Chat Admin @stuaart",
+          price_title: "Bot Rental Packages", price_sub: "Small investment for maximum automation.",
+          per_month: "/month", per_year: "/year",
+          pkg1_desc: "Simple auto-broadcast.", pkg1_f1: "Reliable Broadcast", pkg1_f2: "24 Hours Server ON", pkg1_f3: "Routine Updates", btn_order: "Order Now",
+          pkg2_desc: "Unlimited file conversion.", pkg2_f1: "Unlimited Convert", pkg2_f2: "Downtime Warranty", pkg2_f3: "Priority Support", pkg2_f4: "Save 60%", btn_take: "Grab Promo",
+          pkg3_desc: "Short term solution.", pkg3_f2: "Backup Bot", pkg3_f3: "Fast Response",
           testi_title: "Testimonials"
         }
       };
 
       // --- Language Logic ---
       let currentLang = localStorage.getItem('lang') || 'id';
-
       function updateContent(lang) {
-        currentLang = lang;
-        localStorage.setItem('lang', lang);
-        
-        // Update Flag & Text
+        currentLang = lang; localStorage.setItem('lang', lang);
         const isId = lang === 'id';
         const flagEl = document.getElementById('langFlag');
         const textEl = document.getElementById('langText');
         if (flagEl) flagEl.textContent = isId ? '🇮🇩' : '🇬🇧';
         if (textEl) textEl.textContent = isId ? 'ID' : 'EN';
-        
         const mFlag = document.getElementById('langFlagMobile');
         if(mFlag) mFlag.textContent = isId ? '🇮🇩' : '🇬🇧';
         if(mFlag) mFlag.nextSibling.textContent = isId ? ' ID' : ' EN';
-
-        // Update Texts
         document.querySelectorAll('[data-i18n]').forEach(el => {
           const key = el.getAttribute('data-i18n');
-          if (translations[lang][key]) {
-            el.textContent = translations[lang][key];
-          }
+          if (translations[lang][key]) el.textContent = translations[lang][key];
         });
-
-        // Update Typing Text
         const typingElement = document.getElementById('typing-text');
-        if (typingElement) {
-          typingElement.textContent = isId ? 'Teknologi Digital' : 'Digital Technology';
-        }
+        if (typingElement) typingElement.textContent = isId ? 'Teknologi Digital' : 'Digital Technology';
       }
-
-      // Init Language
       updateContent(currentLang);
+      document.getElementById('langToggle')?.addEventListener('click', () => updateContent(currentLang === 'id' ? 'en' : 'id'));
+      document.getElementById('langToggleMobile')?.addEventListener('click', () => updateContent(currentLang === 'id' ? 'en' : 'id'));
 
-      // Toggle Event Listeners
-      document.getElementById('langToggle')?.addEventListener('click', () => {
-        updateContent(currentLang === 'id' ? 'en' : 'id');
-      });
-      document.getElementById('langToggleMobile')?.addEventListener('click', () => {
-        updateContent(currentLang === 'id' ? 'en' : 'id');
-      });
-
-      // --- Dark Mode Logic ---
+      // --- Dark Mode ---
       const html = document.documentElement;
       const themeToggle = document.getElementById('themeToggle');
       const themeToggleMobile = document.getElementById('themeToggleMobile');
       const themeIcon = document.getElementById('themeIcon');
       const themeIconMobile = document.getElementById('themeIconMobile');
-
       function updateTheme(isDark) {
         if (isDark) {
-          html.classList.add('dark');
-          if(themeIcon) themeIcon.textContent = '☀️';
-          if(themeIconMobile) themeIconMobile.textContent = '☀️';
+            html.classList.add('dark');
+            if(themeIcon) themeIcon.textContent = '☀️';
+            if(themeIconMobile) themeIconMobile.textContent = '☀️';
         } else {
-          html.classList.remove('dark');
-          if(themeIcon) themeIcon.textContent = '🌙';
-          if(themeIconMobile) themeIconMobile.textContent = '🌙';
+            html.classList.remove('dark');
+            if(themeIcon) themeIcon.textContent = '🌙';
+            if(themeIconMobile) themeIconMobile.textContent = '🌙';
         }
         localStorage.setItem('theme', isDark ? 'dark' : 'light');
       }
-
       const savedTheme = localStorage.getItem('theme');
       const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       updateTheme(savedTheme === 'dark' || (!savedTheme && systemDark));
-
-      [themeToggle, themeToggleMobile].forEach(btn => {
-        btn?.addEventListener('click', () => {
-          updateTheme(!html.classList.contains('dark'));
-        });
-      });
+      [themeToggle, themeToggleMobile].forEach(btn => btn?.addEventListener('click', () => updateTheme(!html.classList.contains('dark'))));
 
       // --- Mobile Menu ---
-      const menuBtn = document.getElementById('menuBtn');
-      const mobileMenu = document.getElementById('mobileMenu');
-      menuBtn?.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-      });
+      document.getElementById('menuBtn')?.addEventListener('click', () => document.getElementById('mobileMenu').classList.toggle('hidden'));
+      document.getElementById('year').textContent = new Date().getFullYear();
 
-      // --- Year ---
-      const yearEl = document.getElementById('year');
-      if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-      // --- Interactive Animations ---
-
-      // 1. Scroll Reveal (Fade Up)
-      const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+      // --- Animations ---
       const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-            observer.unobserve(entry.target); 
-          }
-        });
-      }, observerOptions);
-
+        entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('active'); observer.unobserve(entry.target); }});
+      }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
       document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-      // 2. 3D Tilt Effect
       document.querySelectorAll('[data-tilt]').forEach(card => {
         card.addEventListener('mousemove', (e) => {
           const rect = card.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-          
-          const centerX = rect.width / 2;
-          const centerY = rect.height / 2;
-          
-          const rotateX = ((y - centerY) / centerY) * -10; 
-          const rotateY = ((x - centerX) / centerX) * 10;
-          
-          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+          card.style.transform = `perspective(1000px) rotateX(${-y/10}deg) rotateY(${x/10}deg) scale(1.02)`;
         });
-        
-        card.addEventListener('mouseleave', () => {
-          card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
-        });
+        card.addEventListener('mouseleave', () => card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)');
       });
 
-      // 3. Scroll To Top & Active Nav
+      // --- Scroll Top ---
       const scrollBtn = document.getElementById('scrollToTop');
-      const sections = document.querySelectorAll('section');
-      const navLinks = document.querySelectorAll('.nav-link');
-
       window.addEventListener('scroll', () => {
-        let current = '';
+        if (window.scrollY > 300) scrollBtn.classList.remove('translate-y-20', 'opacity-0');
+        else scrollBtn.classList.add('translate-y-20', 'opacity-0');
         
-        if (window.scrollY > 300) {
-          scrollBtn?.classList.remove('translate-y-20', 'opacity-0');
-        } else {
-          scrollBtn?.classList.add('translate-y-20', 'opacity-0');
-        }
-
-        sections.forEach(section => {
-          const sectionTop = section.offsetTop;
-          if (pageYOffset >= (sectionTop - 200)) {
-            current = section.getAttribute('id');
-          }
+        let current = '';
+        document.querySelectorAll('section').forEach(section => {
+             if (pageYOffset >= (section.offsetTop - 200)) current = section.getAttribute('id');
         });
-
-        navLinks.forEach(link => {
-          link.classList.remove('active');
-          if (link.getAttribute('href').includes(current) && current !== '') {
-            link.classList.add('active');
-          }
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href').includes(current) && current !== '') link.classList.add('active');
         });
       });
-
       scrollBtn?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-      // 4. Lightweight Particle System
+      // --- Particle System ---
       const canvas = document.getElementById('particleCanvas');
       if (canvas) {
         const ctx = canvas.getContext('2d');
         let particlesArray = [];
-
-        function resizeCanvas() {
-          canvas.width = window.innerWidth;
-          canvas.height = window.innerHeight;
-        }
+        const resizeCanvas = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; };
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
-
         class Particle {
           constructor() {
-            this.x = Math.random() * canvas.width;
-            this.y = Math.random() * canvas.height;
-            this.size = Math.random() * 2;
-            this.speedX = (Math.random() * 1) - 0.5;
-            this.speedY = (Math.random() * 1) - 0.5;
+            this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height;
+            this.size = Math.random() * 2; this.speedX = Math.random() - 0.5; this.speedY = Math.random() - 0.5;
             this.color = Math.random() > 0.5 ? 'rgba(124, 58, 237, 0.3)' : 'rgba(217, 70, 239, 0.3)';
           }
           update() {
-            this.x += this.speedX;
-            this.y += this.speedY;
+            this.x += this.speedX; this.y += this.speedY;
             if (this.x > canvas.width || this.x < 0) this.speedX = -this.speedX;
             if (this.y > canvas.height || this.y < 0) this.speedY = -this.speedY;
           }
-          draw() {
-            ctx.fillStyle = this.color;
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fill();
+          draw() { ctx.fillStyle = this.color; ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill(); }
+        }
+        const initParticles = () => { particlesArray = []; for (let i = 0; i < 50; i++) particlesArray.push(new Particle()); };
+        const animateParticles = () => { ctx.clearRect(0, 0, canvas.width, canvas.height); particlesArray.forEach(p => { p.update(); p.draw(); }); requestAnimationFrame(animateParticles); };
+        initParticles(); animateParticles();
+      }
+
+      // --- UPDATED PRICING LOGIC (STABLE) ---
+      function selectPricing(selectedId) {
+        const allIds = ['pkg-jaseb', 'pkg-annual', 'pkg-monthly'];
+        
+        allIds.forEach(id => {
+          const el = document.getElementById(id);
+          if (!el) return;
+          
+          const badge = el.querySelector('.badge-container');
+          const inner = el.querySelector('.pricing-content');
+          const title = el.querySelector('.title-text');
+          const btn = el.querySelector('.btn-action');
+          const list = el.querySelector('.feature-list');
+
+          if (id === selectedId) {
+            // ACTIVE STATE
+            // Wrapper: Gradient, Shadow, Scale
+            el.classList.remove('glass', 'border', 'border-slate-200', 'dark:border-slate-700', 'hover:scale-105', 'hover:-translate-y-2', 'hover:shadow-xl');
+            el.classList.add('bg-gradient-to-b', 'from-primary-600', 'to-secondary-700', 'shadow-2xl', 'scale-[1.05]', '-translate-y-4', 'hover:-translate-y-6', 'z-10');
+            
+            // Badge: Show
+            if(badge) badge.classList.remove('hidden');
+
+            // Inner: Solid BG
+            if(inner) {
+                inner.classList.remove('bg-transparent');
+                inner.classList.add('bg-white', 'dark:bg-slate-900');
+            }
+
+            // Title: Colored
+            if(title) title.classList.add('text-primary-600');
+
+            // Button: Gradient
+            if(btn) {
+                btn.className = 'block w-full py-3 rounded-xl bg-gradient-to-r from-primary-600 to-secondary-600 text-white text-center font-bold hover:shadow-lg transition transform hover:-translate-y-0.5 btn-action';
+                if(btn.querySelector('span') && (id === 'pkg-annual')) btn.querySelector('span').textContent = 'Ambil Promo'; // Opsional text change
+            }
+            
+            // List: Bold
+            if(list) list.classList.add('font-medium');
+
+          } else {
+            // INACTIVE STATE
+            // Wrapper: Glass, Border, Reset Scale
+            el.classList.remove('bg-gradient-to-b', 'from-primary-600', 'to-secondary-700', 'shadow-2xl', 'scale-[1.05]', '-translate-y-4', 'hover:-translate-y-6', 'z-10');
+            el.classList.add('glass', 'border', 'border-slate-200', 'dark:border-slate-700', 'hover:scale-105', 'hover:-translate-y-2', 'hover:shadow-xl');
+
+            // Badge: Hide
+            if(badge) badge.classList.add('hidden');
+
+            // Inner: Transparent (Glass effect comes from wrapper)
+            if(inner) {
+                inner.classList.remove('bg-white', 'dark:bg-slate-900');
+                inner.classList.add('bg-transparent');
+            }
+
+            // Title: Default
+            if(title) title.classList.remove('text-primary-600');
+
+            // Button: Outline
+            if(btn) {
+                btn.className = 'block w-full py-3 rounded-xl border-2 border-slate-200 dark:border-slate-700 text-center font-bold hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors btn-action';
+                // Reset text if needed, but 'Order Sekarang' is fine usually
+            }
+            
+            // List: Normal
+            if(list) list.classList.remove('font-medium');
           }
-        }
-
-        function initParticles() {
-          particlesArray = [];
-          const numberOfParticles = Math.min(50, (canvas.width * canvas.height) / 15000); 
-          for (let i = 0; i < numberOfParticles; i++) {
-            particlesArray.push(new Particle());
-          }
-        }
-
-        function animateParticles() {
-          ctx.clearRect(0, 0, canvas.width, canvas.height);
-          particlesArray.forEach(particle => {
-            particle.update();
-            particle.draw();
-          });
-          requestAnimationFrame(animateParticles);
-        }
-
-        initParticles();
-        animateParticles();
+        });
       }
     </script>
   </body>
